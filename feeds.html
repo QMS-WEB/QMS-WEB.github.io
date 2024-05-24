@@ -1,1 +1,122 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedbacks</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5); /_ Translucent background _/
+            margin: 0;
+        }
+        
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+           box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /_ Translucent shadow _/
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+       <center>
+       <br>
+       <br>
+       <h2>Lets Us Know How We Can Improve Our Service</h2>
+       </center>
+       <form id="courseRequestForm">
+            <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" class="form-control" id="fullName" name="fullName" required> <br><br>
+            </div>
+            
+            <div class="form-group"><br>
+                <label for="email">Contact Info: E.g Email, Whatapp number or Social Media Profile:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group"><br>
+                <label for="courseName">Write your Feeback:</label>
+                <input type="text" class="form-control" id="courseName" name="courseName" required>
+            </div>
+            <center><br>
+            <button type="button" class="btn btn-primary" onclick="submitForm()">Submit <i class="bi bi-arrow-right"></i></button>
+            
+           <br>
+           <br>
+           <b><span style="color:navy;"> You can WhatsApp Quick Marketing Service (QMS) : +234 811 421 0237</span>
+        </b></center>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function submitForm() {
+            // Your existing form submission logic remains unchanged
+            // ...
+            const form = document.getElementById('courseRequestForm');
+            const formData = new FormData(form);
+            
+            $.ajax({
+            url: 'https://api.telegram.org/bot6404586790:AAFpuevp9GBg7tLVDsw95JcWD93Lw5dj480/sendMessage',
+            method: 'POST',
+            data: JSON.stringify({
+            chat_id: '6839990154',
+            text: `FeedBack from: ${formData.get('fullName')}\nEmail: ${formData.get('email')}\n Message : ${formData.get('courseName')}`,
+            }),
+            contentType: 'application/json',
+            success: function(response) {
+            showDialog('Success', 'Form successfully sent!');
+            },
+            error: function(xhr, status, error) {
+            showDialog('Error', 'Failed to send the form. ' + xhr.responseText);
+            }
+            });
+            }
+            
+            function showDialog(title, message) {
+            const dialog = document.createElement('dialog');
+            dialog.innerHTML = `
+            <h3>${title}</h3>
+            <p>${message}</p>
+            <button>Close</button>
+            `;
+            
+            dialog.querySelector('button').addEventListener('click', function() {
+            dialog.close();
+            });
+            
+            document.body.appendChild(dialog);
+            dialog.showModal();
+            }
+            
+            if (!dialogPolyfill) {
+            dialogPolyfill.registerDialog(dialog);
+            
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
