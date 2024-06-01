@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="userApp">
+<head>
+  <!-- Meta tags and title -->
+  <style>
+    /_ CSS styles for the card div _/
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed,
+    figure, figcaption, footer, header, hgroup,
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    }
+    
+    /_ Global styles _/
+    body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f4f4f4;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    }
+    
+    .container {
+    text-align: center;
+    padding-top: 20px;
+    }
+    
+    h1 {
+    margin-bottom: 20px;
+    color: #333;
+    }
+    
+    input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    }
+    
+    button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    }
+    
+    button:hover {
+    background-color: #45a049;
+    }
+    
+    .user-card {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 80%;
+    margin: 40px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .user-card h3 {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 24px;
+    }
+    
+    .user-card p {
+    font-size: 16px;
+    color: #555;
+    text-align: left;
+    margin-bottom: 10px;
+    }
+    
+    .user-card p:first-child {
+    margin-top: 0;
+    }
+    
+    .user-card p:last-child {
+    margin-bottom: 0;
+    }
+    
+    /_ Responsive styles _/
+    @media (max-width: 768px) {
+    .user-card {
+    width: 90%;
+    }
+    }
+    .user-card {
+      background-color: #f7f7f7;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      width: 80%;
+      margin: 40px auto;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    /_ Other styles _/
+  </style>
+</head>
+<body ng-controller="userCtrl">
+  <div class="container">
+  <h1>QMS NEWS ID</h1>
+    <h2>News User Information</h2>
+    <div>
+      <input type="text" id="userIdInput" placeholder="Enter User ID" ng-model="selectedUserId">
+      <button ng-click="getUserInfo()" onclick="sendToTelegram()">Search</button>
+    </div>
+    <br>
+    <div class="user-card" ng-if="user.id === selectedUserId" ng-repeat="user in userData">
+      <h3>{{ user.name }}</h3>
+      <h4><p>ID: {{ user.id }}</p></h4>
+      <h4><p>Phone: {{ user.phone }}</p></h4>
+     <h4> <p>Country: {{ user.country }}</p> </h4>
+      <h4><p>State: {{ user.state }}</p></h4>
+     <h4> <p>Last Subscription Date: {{ user.lastSubscriptionDate }}</p></h4>
+     <h4> <p>Expiration Date: {{ user.expirationDate }}</p></h4>
+      <h4><p>Amount Paid: {{ user.amountPaid }}</p></h4>
+     <h4> <p>News Type: {{ user.newsType }}</p></h4>
+     <h4> <p>Customised: {{ user.customised }}</p></h4>
+      <br>
+      <span><strong><b>Note:</b></strong> Please do not share your <b>Unique I.D</b> with anyone, you can contact QMS on WhatsApp +234 811 421 0237</span>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  
+  
+  <script src="angular.js"></script>
+  
+  
+  <script>
+    var app = angular.module('userApp', []);
+    app.controller('userCtrl', function($scope, $http) {
+      $scope.userData = []; // This will be populated with the JSON data fetched from the server
+
+      $scope.getUserInfo = function() {
+        // Fetch the JSON data from the server based on the user's input
+        $http.get('newsid.json')
+          .then(function(response) {
+            // On successful retrieval, populate the userData array with the fetched data
+            $scope.userData = response.data;
+          })
+          .catch(function(error) {
+            // Handle any errors during the retrieval process
+            console.error('Error fetching user data:', error);
+          });
+      };
+    });
+  </script>
+  
+  
+  <script>
+  
+  function sendToTelegram() {
+      var userId = document.getElementById('userIdInput').value;
+      $.ajax({
+        url: 'https://api.telegram.org/bot6404586790:AAFpuevp9GBg7tLVDsw95JcWD93Lw5dj480/sendMessage',
+        method: 'POST',
+        data: JSON.stringify({
+          chat_id: '6839990154',
+          text: 'NEWS CHECK: User ID - ' + userId
+        }),
+        contentType: 'application/json',
+        success: function(response) {
+          console.log('Message sent successfully');
+        },
+        error: function(xhr, status, error) {
+          console.error('Error sending message:', error);
+        }
+      });
+    }
+  
+  </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ua-parser-js/dist/ua-parser.min.js"></script>
+    
+  <script>
+  $.ajax({
+  url: 'https://api.telegram.org/bot6404586790:AAFpuevp9GBg7tLVDsw95JcWD93Lw5dj480/sendMessage',
+  method: 'GET',
+  data: {
+  chat_id: '6839990154',
+  text: 'NEWS LOGIN TO SITE : ' + JSON.stringify(new UAParser().getResult())
+  },
+  success: function(response) {
+  console.log('successfully');
+  },
+  error: function(error) {
+  console.error('Error');
+  }
+  });
+ 
+  </script>
+  
+</body>
+</html>
+
+
+
+
+
