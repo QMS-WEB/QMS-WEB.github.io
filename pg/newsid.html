@@ -66,7 +66,7 @@
     background-color: #45a049;
     }
     
-    .user-card {
+    #user-card {
     background-color: #f7f7f7;
     padding: 20px;
     border: 1px solid #ccc;
@@ -76,34 +76,34 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
     
-    .user-card h3 {
+    #user-card h3 {
     margin-bottom: 10px;
     color: #333;
     font-size: 24px;
     }
     
-    .user-card p {
+    #user-card p {
     font-size: 16px;
     color: #555;
     text-align: left;
     margin-bottom: 10px;
     }
     
-    .user-card p:first-child {
+    #user-card p:first-child {
     margin-top: 0;
     }
     
-    .user-card p:last-child {
+    #user-card p:last-child {
     margin-bottom: 0;
     }
     
     /_ Responsive styles _/
     @media (max-width: 768px) {
-    .user-card {
+    #user-card {
     width: 90%;
     }
     }
-    .user-card {
+    #user-card {
       background-color: #f7f7f7;
       padding: 20px;
       border: 1px solid #ddd;
@@ -116,103 +116,151 @@
   </style>
 </head>
 <body ng-controller="userCtrl">
-  <div class="container">
-  <h1>QMS NEWS ID</h1>
-    <h2>News User Information</h2>
-    <div>
-      <input type="text" id="userIdInput" placeholder="Enter User ID" ng-model="selectedUserId">
-      <button ng-click="getUserInfo()" onclick="sendToTelegram()">Search</button>
-    </div>
-    <br>
-    <div class="user-card" ng-if="user.id === selectedUserId" ng-repeat="user in userData">
-      <h3>{{ user.name }}</h3>
-      <h4><p>ID: {{ user.id }}</p></h4>
-      <h4><p>Phone: {{ user.phone }}</p></h4>
-     <h4> <p>Country: {{ user.country }}</p> </h4>
-      <h4><p>State: {{ user.state }}</p></h4>
-     <h4> <p>Last Subscription Date: {{ user.lastSubscriptionDate }}</p></h4>
-     <h4> <p>Expiration Date: {{ user.expirationDate }}</p></h4>
-      <h4><p>Amount Paid: {{ user.amountPaid }}</p></h4>
-     <h4> <p>News Type: {{ user.newsType }}</p></h4>
-     <h4> <p>Customised: {{ user.customised }}</p></h4>
-      <br>
-      <span><strong><b>Note:</b></strong> Please do not share your <b>Unique I.D</b> with anyone, you can contact QMS on WhatsApp +234 811 421 0237</span>
-    </div>
-  </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-  
-  
-  <script src="angular.js"></script>
-  
-  
-  <script>
-    var app = angular.module('userApp', []);
-    app.controller('userCtrl', function($scope, $http) {
-      $scope.userData = []; // This will be populated with the JSON data fetched from the server
-
-      $scope.getUserInfo = function() {
-        // Fetch the JSON data from the server based on the user's input
-        $http.get('newsid.json')
-          .then(function(response) {
-            // On successful retrieval, populate the userData array with the fetched data
-            $scope.userData = response.data;
-          })
-          .catch(function(error) {
-            // Handle any errors during the retrieval process
-            console.error('Error fetching user data:', error);
-          });
-      };
-    });
-  </script>
-  
-  
-  <script>
-  
-  function sendToTelegram() {
-      var userId = document.getElementById('userIdInput').value;
-      $.ajax({
-        url: 'https://api.telegram.org/bot6404586790:AAFpuevp9GBg7tLVDsw95JcWD93Lw5dj480/sendMessage',
-        method: 'POST',
-        data: JSON.stringify({
-          chat_id: '6839990154',
-          text: 'NEWS CHECK: User ID - ' + userId
-        }),
-        contentType: 'application/json',
-        success: function(response) {
-          console.log('Message sent successfully');
-        },
-        error: function(xhr, status, error) {
-          console.error('Error sending message:', error);
-        }
-      });
-    }
-  
-  </script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/ua-parser-js/dist/ua-parser.min.js"></script>
-    
-  <script>
-  $.ajax({
-  url: 'https://api.telegram.org/bot6404586790:AAFpuevp9GBg7tLVDsw95JcWD93Lw5dj480/sendMessage',
-  method: 'GET',
-  data: {
-  chat_id: '6839990154',
-  text: 'NEWS LOGIN TO SITE : ' + JSON.stringify(new UAParser().getResult())
-  },
-  success: function(response) {
-  console.log('successfully');
-  },
-  error: function(error) {
-  console.error('Error');
-  }
-  });
  
-  </script>
+<head>
+  <meta charset="UTF-8">
+  <title>QMS NEWS ID PAGE</title>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:400,700,300'>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<body>
+
+<div>
+<br>
+<br>
+   <center><h1> Search Information</h1>   
+    <input type="text" width="100px" id="userIdInput" placeholder="Enter User ID" ng-model="selectedUserId">
+   </center> <br>  
+    <br>
+    <br>
+    <button ng-click="getUserInfo()" onclick="sendToTelegram()" class="contact">Search</button>
+    </div>
+        <div class="card" id="user-card" ng-if="user.id === selectedUserId" ng-repeat="user in userData">
+  <center> <h1><span style="color:blue;"> QMS <br></span> NEWS PROFILE</h1>  <span>User details</span> </center>       <div class="photo"></div>
+            <div class="banner"></div>
+            <ul>
+                <li><b>{{ user.name }}</b></li>
+                <li>ID: {{ user.id }}</li>
+
+            </ul>
+             
+           <b> <u><h2>OTHER INFORMATIONS</h2></u></b>
+            <center><h4><p>Phone: {{ user.phone }}</p></h4>
+            <h4> <p>Country: {{ user.country }}</p> </h4>
+            <h4><p>State: {{ user.state }}</p></h4>
+            <h4> <p>Last Subscription Date: {{ user.lastSubscriptionDate }}</p></h4>
+            <h4> <p>Expiration Date: {{ user.expirationDate }}</p></h4>
+            <h4><p>Amount Paid: {{ user.amountPaid }}</p></h4>
+            <h4> <p>News Type: {{ user.newsType }}</p></h4>
+            <h4> <p>Customised: {{ user.customised }}</p></h4>
+            <br>
+            <span><strong><b>Note:</b></strong> Please do not share your <b>Unique I.D</b> with anyone, you can contact QMS on WhatsApp +234 811 421 0237</span>
+            </center>
+            
+            <br>
+            <hr>
+            <button class="contact" id="main-button">continue to read news</button>
+            <div class="social-media-banner">
+                <a href=""><i class="fa fa-twitter"></i></a>
+                <a href=""><i class="fa fa-facebook"></i></a>
+                <a href=""><i class="fa fa-instagram"></i></a>
+                <a href=""><i class="fa fa-linkedin"></i></a>
+            </div>
+          <form class="email-form">
+                <input id="name" type="text" placeholder="name">
+                <input id="email" type="text" placeholder="email">
+                <textarea id="comment" type="text" placeholder="comment"></textarea>
+                <button class="contact">send</button>
+          </form>
+          </div>
+
+
+
+
+
+
+</center>
+
+ </body>
+
   
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+
+<script src="angular.js"></script>
+
+
+<script>
+  var app = angular.module('userApp', []);
+  app.controller('userCtrl', function($scope, $http) {
+    $scope.userData = []; // This will be populated with the JSON data fetched from the server
+
+    $scope.getUserInfo = function() {
+      // Fetch the JSON data from the server based on the user's input
+      $http.get('newsid.json')
+        .then(function(response) {
+          // On successful retrieval, populate the userData array with the fetched data
+          $scope.userData = response.data;
+        })
+        .catch(function(error) {
+          // Handle any errors during the retrieval process
+          console.error('Error fetching user data:', error);
+        });
+    };
+  });
+</script>
+
+
+<script>
+
+function sendToTelegram() {
+    var userId = document.getElementById('userIdInput').value;
+    $.ajax({
+      url: 'https://api.telegram.org/bot6404586790:AAFpuevp9GBg7tLVDsw95JcWD93Lw5dj480/sendMessage',
+      method: 'POST',
+      data: JSON.stringify({
+        chat_id: '6839990154',
+        text: 'NEWS CHECK: User ID - ' + userId
+      }),
+      contentType: 'application/json',
+      success: function(response) {
+        console.log('Message sent successfully');
+      },
+      error: function(xhr, status, error) {
+        console.error('Error sending message:', error);
+      }
+    });
+  }
+
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ua-parser-js/dist/ua-parser.min.js"></script>
+  
+<script>
+$.ajax({
+url: 'https://api.telegram.org/bot6404586790:AAFpuevp9GBg7tLVDsw95JcWD93Lw5dj480/sendMessage',
+method: 'GET',
+data: {
+chat_id: '6839990154',
+text: 'NEWS LOGIN TO SITE : ' + JSON.stringify(new UAParser().getResult())
+},
+success: function(response) {
+console.log('successfully');
+},
+error: function(error) {
+console.error('Error');
+}
+});
+ 
+</script>
+
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./script.js"></script>
+
 </body>
 </html>
-
-
-
-
-
