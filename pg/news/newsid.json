@@ -1,0 +1,56 @@
+[
+    {
+        "id": "12345",
+        "name": "John Doe",
+        "phone": "123-456-7890",
+        "country": "USA",
+        "state": "California",
+        "lastSubscriptionDate": "2024-05-14",
+        "expirationDate": "2024-06-14",
+        "amountPaid": "$50.00",
+        "newsType": "Premium",
+        "customised":" Schoool"
+    },
+    {
+        "id": "FaBr9383",
+        "name": "FaithFull Ibrahim",
+        "phone": "07068779383",
+        "age":"NILL",
+        "country": "Nigeria",
+        "state": "Rivers State",
+        "lastSubscriptionDate": "05-May-2024",
+        "expirationDate": "05-June-2024",
+        "amountPaid": "₦100.00",
+        "newsType": "QMS Designed",
+        "newscode":"1"
+    },
+    {
+    "id": "ERIC-MOORE2004@Q",
+    "name": "ERIC-MOORE OGBOWU",
+    "age":"",
+    "phone": "+234 813-871-5323",
+    "country": "Nigeria",
+    "state": "Rivers State",
+    "lastSubscriptionDate": "2024-MAY-17",
+    "expirationDate": "2024-JUNE-17",
+    "amountPaid": "N100.00/ 1 Month",
+    "newsType": "QMS Designed News",
+    "reg_user_agent":"",
+    "newscode":"3"
+    }
+    ,
+   {
+     "id": "AzuMey120",
+    "name": "Azubuike Melody",
+    "age":"Teenager",
+    "phone": "+2349125886034",
+    "country": "Nigeria",
+    "state": "Rivers State",
+    "lastSubscriptionDate": "17-JUNE-2024",
+    "expirationDate": "17-JULY-2024",
+    "amountPaid": "N100.00/ 1 Month",
+    "newsType": "QMS Designed News",
+    "reg_user_agent":"",
+    "newscode":"3"
+    }
+]
