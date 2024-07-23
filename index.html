@@ -1,122 +1,510 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feedbacks</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.5); /_ Translucent background _/
-            margin: 0;
-        }
-        
-        .form-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-           box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /_ Translucent shadow _/
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title> Authentication Page </title>
+  
+
 </head>
 <body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Authentication</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Fira+Sans&display=swap"
+      rel="stylesheet"
+    />
 
-    <div class="form-container">
-       <center>
-       <br>
-       <br>
-       <h2>Lets Us Know How We Can Improve Our Service</h2>
-       </center>
-       <form id="courseRequestForm">
-            <div class="form-group">
-                <label for="fullName">Full Name:</label>
-                <input type="text" class="form-control" id="fullName" name="fullName" required> <br><br>
-            </div>
-            
-            <div class="form-group"><br>
-                <label for="email">Contact Info: E.g Email, Whatapp number or Social Media Profile:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-            
-            <div class="form-group"><br>
-                <label for="courseName">Write your Feeback:</label>
-                <input type="text" class="form-control" id="courseName" name="courseName" required>
-            </div>
-            <center><br>
-            <button type="button" class="btn btn-primary" onclick="submitForm()">Submit <i class="bi bi-arrow-right"></i></button>
-            
-           <br>
-           <br>
-           <b><span style="color:navy;"> You can WhatsApp Quick Marketing Service (QMS) : +234 811 421 0237</span>
-        </b></center>
-        </form>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="https://naishare.com/images/favicon.png"
+    />
+   
+ <link rel="stylesheet" href="style.cs">
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
+
+ <style>
+    
+  /* Font and color variables */
+  :root {
+    --primary-color: #168ab8;
+    --secondary-color: #e8f8ff;
+    --font-family: "Fira Sans", sans-serif;
+  }
+
+  /* Global styles */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: var(--font-family);
+    background-color: #f9f9f9;
+  }
+
+  /* Forms container */
+  .forms-out {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Forms inner container */
+  .forms-in {
+    padding: 20px;
+  }
+
+  /* Form fields */
+  .forms-in input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Buttons */
+  .forms-in button {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .forms-in button:hover {
+    opacity: 0.7;
+  }
+
+  /* Other styles */
+  #forgot-password {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  #forgot-password:hover {
+    opacity: 0.7;
+  }
+
+  .hide {
+    display: none;
+  }
+
+#dashboard {
+  display: none;
+}
+
+
+
+
+
+</style>
+ </head>
+
+  <body>
+   
+
+ 
+<div class="forms-out">
+  <div class="forms-in">
+    <div id="registration-page" class="hide">
+      <button id="show-login">Sign In</button>
+      <h3>Sign Up</h3>
+      Email <br />
+      <input type="email" id="registration-email" />
+      <br />
+      Confirm Email <br />
+      <input type="email" id="registration-reemail" autocomplete="disable" />
+      <br />
+      Password <br />
+      <input type="password" id="registration-password" />
+      <br />
+      Username <br />
+      <input type="text" id="registration-username" />
+      <br />
+      Subject <br />
+      <select id="registration-subject">
+        <option value="subject1">Subject 1</option>
+        <option value="subject2">Subject 2</option>
+        <option value="subject3">Subject 3</option>
+        <option value="subject4">Subject 4</option>
+      </select>
+      <br />
+      Profile <br />
+      <input type="file" id="registration-profile" />
+      <br />
+      Bio <br />
+      <textarea id="registration-bio"></textarea>
+      <br />
+      User ID <br />
+      <input type="text" id="registration-userid" />
+      <br />
+      <center><button id="register">Sign Up</button></center>
     </div>
+    <div id="login-page">
+<center> <h3>Login to E-CBT</h3></center>
+      <button id="show-register">Sign Up</button>
+      <h3>Sign In</h3>
+      Email <br />
+      <input type="email" id="login-email" />
+      <br />
+      Password <br />
+      <input type="password" id="login-password" />
+      <br />
+      <p id="forgot-password">Forgot Password</p>
+      <center><button class="wow bounceIn" id="login">Sign In</button></center>
 
-    <!-- Bootstrap JS and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </div>
+    <div id="homepage" class="hide">
+  
+      <h3>Logged In</h3>
+<br>
+<hr>
+       <h3>User Information</h3>
+<!-- Create a new div for the profile -->
+<div id="profile-div" style="text-align: center;">
+  <!-- Round profile picture -->
+  <img src="${userprofile}" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; margin: 10px;">
+  <!-- Display user details -->
+  <h4>Username: ${username}</h4>
+  <p> Bio: ${userbio}</p>
+  <p>UserID: ${userid}</p>
+  <p>E-mail Adress: ${useremail}</p>
+</div>
+   <center> <button id="signout">Sign Out</button> </center>
+     
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <div id="dashboard" class ="forms-out">
+ <div id="root">
+    <dashboard-view>
+      <router-view></router-view>
+    </dashboard-view>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<script  src="./script.js">
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.21/vue.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.11/vue-router.js'></script>
+<script src='https://cdn.firebase.com/js/client/2.4.2/firebase.js'></script>
+<script src='https://cdn.jsdelivr.net/vuefire/1.3.0/vuefire.min.js'></script>
+
+
+
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+<!-- REACT LIBRARY -->
+    <script src="https://unpkg.com/react@15.5.4/dist/react.js"></script>
+    <!-- REACT DOM LIBRARY -->
+    <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
+    <!-- BABEL LIBRARY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+
+
+<script>
+    new WOW().init();
+  </script>
+
+
+  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+
+ 
+
+
+
+
+
+   <!-- TODO: Add SDKs for Firebase products that you want to use-->
+    
+
+
+
+
+
+
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
 
     <script>
-        function submitForm() {
-            // Your existing form submission logic remains unchanged
-            // ...
-            const form = document.getElementById('courseRequestForm');
-            const formData = new FormData(form);
-            
-            $.ajax({
-            url: 'https://api.telegram.org/bot6404586790:AAFpuevp9GBg7tLVDsw95JcWD93Lw5dj480/sendMessage',
-            method: 'POST',
-            data: JSON.stringify({
-            chat_id: '6839990154',
-            text: `FeedBack from: ${formData.get('fullName')}\nEmail: ${formData.get('email')}\n Message : ${formData.get('courseName')}`,
-            }),
-            contentType: 'application/json',
-            success: function(response) {
-            showDialog('Success', 'Form successfully sent!');
-            },
-            error: function(xhr, status, error) {
-            showDialog('Error', 'Failed to send the form. ' + xhr.responseText);
-            }
-            });
-            }
-            
-            function showDialog(title, message) {
-            const dialog = document.createElement('dialog');
-            dialog.innerHTML = `
-            <h3>${title}</h3>
-            <p>${message}</p>
-            <button>Close</button>
-            `;
-            
-            dialog.querySelector('button').addEventListener('click', function() {
-            dialog.close();
-            });
-            
-            document.body.appendChild(dialog);
-            dialog.showModal();
-            }
-            
-            if (!dialogPolyfill) {
-            dialogPolyfill.registerDialog(dialog);
-            
-        }
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBhObBI-YrybEUGSA7DqbXkgT64H5nQ_yA",
+        authDomain: "e-cbt-e2216.firebaseapp.com",
+        databaseURL: "https://registration-cf470.firebaseio.com",
+        projectId: "e-cbt-e2216",
+        storageBucket: "e-cbt-e2216.appspot.com",
+        messagingSenderId: "469325804107",
+        appId: "1:469325804107:web:a73e0faa4c9ef99c9753ce",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
     </script>
+
+    <script>
+      //invokes firebase authentication.
+      const auth = firebase.auth();
+
+  document.querySelector("#show-register").addEventListener("click", () => {
+    showRegistration();
+  });
+
+  const showRegistration = () => {
+    document.querySelector("#registration-page").classList.remove("hide");
+    document.querySelector("#login-page").classList.add("hide");
+    document.querySelector("#homepage").classList.add("hide");
+  };
+
+  document.querySelector("#show-login").addEventListener("click", () => {
+    showLogin();
+  });
+
+  const showLogin = () => {
+    document.querySelector("#registration-page").classList.add("hide");
+    document.querySelector("#login-page").classList.remove("hide");
+    document.querySelector("#homepage").classList.add("hide");
+  };
+
+  document.querySelector("#signout").addEventListener("click", () => {
+    signOut();
+  });
+
+  const register = () => {
+    const email = document.querySelector("#registration-email").value;
+    const reemail = document.querySelector("#registration-reemail").value;
+    const password = document.querySelector("#registration-password").value;
+    const username = document.querySelector("#registration-username").value;
+    const subject = document.querySelector("#registration-subject").value;
+    const profile = document.querySelector("#registration-profile").value;
+    const bio = document.querySelector("#registration-bio").value;
+    const userid = document.querySelector("#registration-userid").value;
+
+    if (email.trim() == "") {
+      alert("Enter Email");
+    } else if (password.trim().length < 7) {
+      alert("Password must be at least 7 characters");
+    } else if (email != reemail) {
+      alert("emails do not match");
+    } else {
+      auth
+        .createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          user.updateProfile({
+            displayName: username,
+            photoURL: profile,
+            bio: bio,
+            userid: userid,
+          });
+        })
+        .catch((error) => {
+          // Handle Errors here
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          alert(errorMessage);
+        });
+    }
+  };
+
+  document.querySelector("#register").addEventListener("click", () => {
+    register();
+  });
+
+  // Register when you hit the enter key
+  document
+    .querySelector("#registration-password")
+    .addEventListener("keyup", (e) => {
+      if (event.keyCode === 13) {
+        e.preventDefault();
+        register();
+      }
+    });
+
+  const login = () => {
+    const email = document.querySelector("#login-email").value;
+    const password = document.querySelector("#login-password").value;
+
+    if (email.trim() == "") {
+      alert("Enter Email");
+    } else if (password.trim() == "") {
+      alert("Enter Password");
+    } else {
+      authenticate(email, password);
+    }
+  };
+
+  document.querySelector("#login").addEventListener("click", () => {
+    login();
+  });
+
+  // Sign in when you hit enter
+  document
+    .querySelector("#login-password")
+    .addEventListener("keyup", (e) => {
+      if (event.keyCode === 13) {
+        e.preventDefault();
+        login();
+      }
+    });
+
+  const authenticate = (email, password) => {
+    const auth = firebase.auth();
+    auth.signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        showHomepage();
+      })
+      .catch((error) => {
+        // Handle Errors here
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        alert(errorMessage);
+      });
+  };
+
+  const showHomepage = () => {
+    document.querySelector("#registration-page").classList.add("hide");
+    document.querySelector("#login-page").classList.add("hide");
+    document.querySelector("#homepage").classList.remove("hide");
+  };
+
+  const signOut = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(function () {
+        location.reload();
+      })
+      .catch(function (error) {
+        alert("error signing out, check network connection");
+      });
+  };
+
+
+auth.onAuthStateChanged((firebaseUser) => {
+  if (firebaseUser) {
+    showHomepage();
+ document.getElementById('dashboard').style.display = 'block';
+    const userid = firebaseUser.uid;
+    const username = firebaseUser.displayName;
+    const useremail = firebaseUser.email;
+    const userprofile = firebaseUser.photoURL;
+    const userbio = firebaseUser.bio;
+
+    // Create a div element to display the user's information
+  
+document.getElementById('profile-div').innerHTML = `
+    <!-- Round profile picture -->
+    <img src="${userprofile}" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; margin: 10px;">
+    <!-- Display user details -->
+    <h4>${username}</h4>
+    <p>${userbio}</p>
+    <p>${userid}</p>
+    <p>${useremail}</p>
+  `;
+  } else {
+    console.log("No user logged in");
+  document.getElementById('dashboard').style.display = 'none';
+  }
+});
+
+
+
+document.querySelector("#forgot-password").addEventListener("click", () => {
+  const email = document.querySelector("#login-email").value;
+  if (email.trim() == "") {
+    alert("Enter Email");
+  } else {
+    forgotPassword(email);
+  }
+});
+
+const forgotPassword = (email) => {
+  auth.sendPasswordResetEmail(email)
+    .then(function() {
+      alert("Email sent");
+    })
+    .catch(function(error) {
+      alert("Invalid email or bad network connection");
+    });
+};
+
+
+
+  const Dashboard = () => {
+      return <h1>Dashboard</h1>;
+    };
+
+    const routes = [
+      { path: '', element: <Dashboard /> }
+    ];
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(
+      <React.Router>
+        <React.Route routes={routes} />
+      </React.Router>
+    );
+
+ </script>
+ 
+
+
+ </body>
+</html>
+<!-- partial -->
+  
 </body>
 </html>
-
-
-
-
-
-
-
-
-
