@@ -1,8 +1,10 @@
-a<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title> Authentication Page </title>
+  <title> Authentication Page 
+
+</title>
   
 
 </head>
@@ -11,25 +13,37 @@ a<!DOCTYPE html>
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Authentication</title>
+    
+
+<title>Authentication</title>
     <link
-      href="https://fonts.googleapis.com/css?family=Fira+Sans&display=swap"
+      href="https://fonts.googleapis.com/css?
+
+family=Fira+Sans&display=swap"
       rel="stylesheet"
     />
 
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1"
+      
+
+content="width=device-width, initial-scale=1, maximum-scale=1"
     />
 
     <link
-      rel="shortcut icon"
+      
+
+rel="shortcut icon"
       type="image/png"
       href="https://naishare.com/images/favicon.png"
-    />
+  
+
+  />
    
  <link rel="stylesheet" href="style.cs">
-<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-
+
+awesome.min.css'>
 
  <style>
     
@@ -170,7 +184,7 @@ a<!DOCTYPE html>
       <br />
       <p id="forgot-password">Forgot Password</p>
       <center><button class="wow bounceIn" id="login">Sign In</button>
-<br>
+<br> <br>
 <button id="show-register">Sign Up</button>
           </center>
 
@@ -184,7 +198,9 @@ a<!DOCTYPE html>
 <!-- Create a new div for the profile -->
 <div id="profile-div" style="text-align: center;">
   <!-- Round profile picture -->
-  <img src="${userprofile}" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; margin: 10px;">
+  <img src="${userprofile}" alt="Profile Picture" style="width: 100px; height: 100px; border-
+
+radius: 50%; margin: 10px;">
   <!-- Display user details -->
   <h4>Username: ${username}</h4>
   <p> Bio: ${userbio}</p>
@@ -230,21 +246,31 @@ a<!DOCTYPE html>
 
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.21/vue.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.11/vue-router.js'></script>
-<script src='https://cdn.firebase.com/js/client/2.4.2/firebase.js'></script>
-<script src='https://cdn.jsdelivr.net/vuefire/1.3.0/vuefire.min.js'></script>
+<script 
+
+src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.11/vue-router.js'></script>
+<script 
+
+src='https://cdn.firebase.com/js/client/2.4.2/firebase.js'></script>
+<script 
+
+src='https://cdn.jsdelivr.net/vuefire/1.3.0/vuefire.min.js'></script>
 
 
 
 <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-
+
+dom.development.js"></script>
 
 <!-- REACT LIBRARY -->
     <script src="https://unpkg.com/react@15.5.4/dist/react.js"></script>
     <!-- REACT DOM LIBRARY -->
     <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
     <!-- BABEL LIBRARY -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-
+
+standalone/6.25.0/babel.min.js"></script>
 
 
 
@@ -290,20 +316,32 @@ a<!DOCTYPE html>
  
      // Your web app's Firebase configuration
       var firebaseConfig = {
-        apiKey: "AIzaSyBhObBI-YrybEUGSA7DqbXkgT64H5nQ_yA",
+        apiKey: 
+
+"AIzaSyBhObBI-YrybEUGSA7DqbXkgT64H5nQ_yA",
         authDomain: "e-cbt-e2216.firebaseapp.com",
-        databaseURL: "https://registration-cf470.firebaseio.com",
-        projectId: "e-cbt-e2216",
+   
+
+     databaseURL: "https://registration-cf470.firebaseio.com",
+        projectId: "e-cbt-
+
+e2216",
         storageBucket: "e-cbt-e2216.appspot.com",
-        messagingSenderId: "469325804107",
+        messagingSenderId: 
+
+"469325804107",
         appId: "1:469325804107:web:a73e0faa4c9ef99c9753ce",
       };
-      // Initialize Firebase
+      // 
+
+Initialize Firebase
       firebase.initializeApp(firebaseConfig);
     </script>
 
     <script>
-      //invokes firebase authentication.
+      
+
+//invokes firebase authentication.
       const auth = firebase.auth();
 
   document.querySelector("#show-register").addEventListener("click", () => {
@@ -456,7 +494,9 @@ auth.onAuthStateChanged((firebaseUser) => {
   
 document.getElementById('profile-div').innerHTML = `
     <!-- Round profile picture -->
-    <img src="${userprofile}" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; margin: 10px;">
+    <img src="${userprofile}" alt="Profile Picture" style="width: 100px; height: 100px; 
+
+border-radius: 50%; margin: 10px;">
     <!-- Display user details -->
     <h4>USERNAME: ${username}</h4><br>
     <h5>User I.D : ${userid}</h5><br>
