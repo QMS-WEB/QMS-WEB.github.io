@@ -1,0 +1,20 @@
+08132651322
+
+
+
+{
+  "question": "What is the capital of Nigeria?",
+  "options": [
+    "Lagos",
+    "Abuja",
+    "Kano",
+    "Port Harcourt"
+  ],
+  "correctAnswer": "Abuja",
+  "explanation": "Abuja has been the capital of Nigeria since 1991, replacing Lagos.",
+  "topic": "Geography",
+  "difficulty": "Easy",
+  "tags": ["Nigeria", "Capital", "Geography"],
+  "questionType": "Multiple Choice",
+  "points": 5
+}
