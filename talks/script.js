@@ -1,6 +1,5 @@
-
-var fb = new Firebase("https://qms-forum-default-rtdb.firebaseio.com
-/");
+//If you fork this, please change this database link to your own.
+var fb = new Firebase("https://codepentestt.firebaseio.com/");
 var messages = fb.child("messages");
 var btn = $('button');
 var wrap = $('.wrapper');
