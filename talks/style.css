@@ -1,3 +1,6 @@
+/* Importing Bootstrap CSS for additional styling */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css");
+
 * {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
@@ -15,6 +18,8 @@ body {
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* Adding a subtle gradient effect */
+  background-image: linear-gradient(to bottom, #fff, #f7f7f7);
 }
 
 li {
@@ -24,11 +29,21 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* Adding a hover effect */
+  transition: background-color 0.3s ease;
+}
+
+li:hover {
+  background-color: #f2f2f2;
 }
 
 li span {
   color: #666;
   font-weight: 600;
+  /* Adding a font awesome icon */
+  font-family: "Font Awesome 5 Free";
+  content: "\f0c0";
+  margin-right: 10px;
 }
 
 input.message {
@@ -39,6 +54,10 @@ input.message {
   border: none;
   border-radius: 30px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* Adding a placeholder color */
+  ::placeholder {
+    color: #ccc;
+  }
 }
 
 input.message:focus {
@@ -56,12 +75,25 @@ input.message:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* Adding a fade-in animation */
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .initModal h3 {
   font-weight: 300;
   color: #fff;
   margin-bottom: 20px;
+  /* Adding a text shadow effect */
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .initModal input.username {
@@ -72,9 +104,8 @@ input.message:focus {
   border: none;
   border-radius: 30px;
   background-color: #fff;
-}
-
-.initModal input.username:focus {
-  outline: none;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  /* Adding a focus effect with box shadow */
+  focus {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
 }
