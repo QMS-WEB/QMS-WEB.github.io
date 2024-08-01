@@ -1,13 +1,4 @@
-:root {
-  --dark-theme: 1;
-  --chat-background: rgba(10, 14, 14, 0.95);
-  --chat-panel-background: #131719;
-  --chat-bubble-background: #14181a;
-  --chat-add-button-background: #212324;
-  --chat-send-button-background: #8147fc;
-  --chat-text-color: #a3a3a3;
-  --chat-options-svg: #a3a3a3;
-}
+@import url('https://cdn.jsdelivr.net/npm/@angular/material@13.3.9/prebuilt-themes/deeppurple-amber.css');
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -20,7 +11,7 @@ body {
   margin: 25px auto;
   padding: 1em;
   border-radius: 12px;
-  background-color: var(--chat-background);
+  background-color: #131719;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -31,6 +22,8 @@ body {
   border: none;
   border-radius: 10px;
   margin-bottom: 1em;
+  background-color: #fff;
+  color: #000;
 }
 
 .initModal {
@@ -42,6 +35,7 @@ body {
   font-weight: 300;
   font-size: 24px;
   margin-bottom: 0.5em;
+  color: #8147fc;
 }
 
 .initModal h3 {
@@ -57,6 +51,81 @@ body {
   border: none;
   border-radius: 10px;
   margin-bottom: 1em;
+  background-color: #fff;
+  color: #000;
 }
 
-/* Add more styles as needed */
+/* Additional styles */
+
+.wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(https://images.unsplash.com/photo-1495808985667-ba4ce2ef31b3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80) fixed;
+  z-index: -1;
+  filter: brightness(0.5);
+}
+
+.chat-bubble {
+  background-color: #14181a;
+  padding: 0.5em;
+  border-radius: 10px;
+  margin-bottom: 1em;
+  color: #a3a3a3;
+}
+
+.chat-bubble::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -10px;
+  transform: translateY(-50%);
+  border: 10px solid transparent;
+  border-right-color: #14181a;
+}
+
+.chat-options {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #131719;
+  padding: 0.5em;
+  border-radius: 10px;
+  display: none;
+}
+
+.chat-options svg {
+  stroke: #a3a3a3;
+  fill: transparent;
+  width: 20px;
+  height: 20px;
+  margin: 0 0.5em;
+}
+
+.chat-options button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.chat-options button:hover {
+  background-color: #212324;
+}
+
+.chat-send-button {
+  background-color: #8147fc;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.chat-send-button:hover {
+  background-color: #6c5ce7;
+}
