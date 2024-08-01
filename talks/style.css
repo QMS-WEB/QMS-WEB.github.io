@@ -1,4 +1,3 @@
-Here is the modified CSS code with changed colors, font type and size, and added animations:
 *, *:before, *:after, ul, li, a, button, input, h1, h2, h3, h4, h5, h6, p, img, image, svg, path, g {
   margin: 0;
   padding: 0;
@@ -126,4 +125,3 @@ input.message {
 .initModal input.username:focus {
   outline: none;
 }
-I changed the font type to Montserrat, increased the font size to 18px, and added animations to the .wrapper and input.message elements. I also changed some colors to create a darker theme. Let me know if you need further modifications!
