@@ -5,7 +5,7 @@
   background-color: transparent;
   border: none;
   text-decoration: none;
-  font-family: "Montserrat"; /* Changed font type */
+  font-family: "Poppins"; /* Changed font type */
   font-size: 18px; /* Changed font size */
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -19,8 +19,8 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #222; /* Changed background color */
-  font-family: "Montserrat";
+  background-color: #3498db; /* Changed background color */
+  font-family: "Poppins";
 }
 
 li {
@@ -49,26 +49,19 @@ li {
   padding-bottom: 70px;
   overflow-x: hidden;
   word-break: break-all;
-  animation: slideIn 1s ease-in-out forwards; /* Added animation */
-}
-
-@keyframes slideIn {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
+  border-radius: 20px; /* Added border radius */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Added box shadow */
 }
 
 li {
   padding: 10px 20px;
   color: #fff; /* Changed text color */
   word-break: break-all;
+  border-bottom: 1px solid #ccc; /* Added border bottom */
 }
 
 li span {
-  color: #4CAF50; /* Changed text color */
+  color: #f1c40f; /* Changed text color */
   font-weight: 700;
 }
 
@@ -78,21 +71,12 @@ input.message {
   position: fixed;
   bottom: 0;
   height: 60px;
-  background-color: #333; /* Changed background color */
+  background-color: #fff; /* Changed background color */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
   padding: 0 20px;
   left: 50%;
   transform: translateX(-50%);
-  animation: bounceIn 1s ease-in-out forwards; /* Added animation */
-}
-
-@keyframes bounceIn {
-  0% {
-    transform: scale(0.5);
-  }
-  100% {
-    transform: scale(1);
-  }
+  border-radius: 20px; /* Added border radius */
 }
 
 .initModal {
@@ -101,7 +85,7 @@ input.message {
   position: fixed;
   left: 0;
   top: 0;
-  background-color: #333; /* Changed background color */
+  background-color: rgba(0, 0, 0, 0.5); /* Changed background color */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,10 +100,11 @@ input.message {
 .initModal input.username {
   width: 350px;
   height: 60px;
-  background-color: #444; /* Changed background color */
+  background-color: #fff; /* Changed background color */
   padding: 0 15px;
   margin-top: 25px;
-  color: #fff; /* Changed text color */
+  color: #333; /* Changed text color */
+  border-radius: 20px; /* Added border radius */
 }
 
 .initModal input.username:focus {
