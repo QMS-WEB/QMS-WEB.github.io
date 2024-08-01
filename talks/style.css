@@ -1,111 +1,245 @@
-/* Importing Bootstrap CSS for additional styling */
-@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css");
+--dark-theme
+	--chat-background: rgba(10, 14, 14, 0.95)
+	--chat-panel-background: #131719
+	--chat-bubble-background: #14181a
+	--chat-add-button-background: #212324
+	--chat-send-button-background: #8147fc
+	--chat-text-color: #a3a3a3
+	--chat-options-svg: #a3a3a3
 
-* {
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+@mixin centered 
+	position: absolute
+	top: 50%
+	left: 50%
+	transform: translate(-50%, -50%)
+
+body
+	background: url(https://images.unsplash.com/photo-1495808985667-ba4ce2ef31b3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)
+	background-size: cover
+	
+
+#chat
+	background: var(--chat-background)
+	max-width: 600px
+	margin: 25px auto
+	box-sizing: border-box
+	padding: 1em
+	border-radius: 12px
+	position: relative
+	overflow: hidden
+	&::before
+		content: ""
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		background: url(https://images.unsplash.com/photo-1495808985667-ba4ce2ef31b3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80) fixed
+		z-index: -1
+
+	.btn-icon
+		position: relative
+		cursor: pointer
+		svg
+			stroke: #FFF
+			fill: #FFF
+			width: 50%
+			height: auto
+			@include centered
+
+	.chat
+		&__conversation-board
+			padding: 1em 0 2em
+			height: calc(100vh - 55px - 2em - 25px * 2 - .5em - 3em)
+			overflow: auto
+	
+			&__message-container.reversed
+				flex-direction: row-reverse
+				
+				.chat__conversation-board__message__bubble 
+					position: relative
+	
+					span
+						&:not(:last-child)
+							margin: 0 0 2em 0
+		
+				.chat__conversation-board__message__person
+					margin: 0 0 0 1.2em
+	
+				.chat__conversation-board__message__options
+					align-self: center
+					position: absolute
+					left: 0
+					display: none
+	
+	
+			&__message-container
+				position: relative
+				display: flex
+				flex-direction: row
+				
+				&:hover 
+					.chat__conversation-board__message__options
+						display: flex
+						align-items: center
+					
+					.option-item:not(:last-child)
+						margin: 0 .5em 0 0
+	
+				&:not(:last-child)
+					margin: 0 0 2em 0
+		
+			&__message__person
+				text-align: center
+				margin: 0 1.2em 0 0
+	
+				&__avatar
+					height: 35px
+					width: 35px
+					overflow: hidden
+					border-radius: 50%
+					user-select: none
+					ms-user-select: none
+					position: relative
+	
+					&::before
+						content: ""
+						position: absolute
+						height: 100%
+						width: 100%
+	
+					img
+						height: 100%
+						width: auto
+		
+				&__nickname
+					font-size: 9px
+					color: #484848
+					user-select: none
+					display: none
+		
+			&__message__context
+				max-width: 55%
+				align-self: flex-end
+	
+			&__message__options
+				align-self: center
+				position: absolute
+				right: 0
+				display: none
+				
+				.option-item
+					border: 0
+					background: 0
+					padding: 0
+					margin: 0
+					height: 16px
+					width: 16px
+					outline: none
+	
+				.emoji-button
+					svg
+						stroke: var(--chat-options-svg)
+						fill: transparent
+						width: 100%
+		
+				.more-button
+					svg
+						stroke: var(--chat-options-svg)
+						fill: transparent
+						width: 100%
+	
+			&__message__date {
+  
 }
 
-body {
-  background-color: #f0f0f0;
-  padding: 20px;
+&__message__bubble {
+  
 }
 
-.wrapper {
-  max-width: 800px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  /* Adding a subtle gradient effect */
-  background-image: linear-gradient(to bottom, #fff, #f7f7f7);
-}
-
-li {
-  background-color: #f7f7f7;
-  padding: 15px;
-  border-bottom: 1px solid #ddd;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* Adding a hover effect */
-  transition: background-color 0.3s ease;
-}
-
-li:hover {
-  background-color: #f2f2f2;
-}
-
-li span {
-  color: #666;
-  font-weight: 600;
-  /* Adding a font awesome icon */
-  font-family: "Font Awesome 5 Free";
-  content: "\f0c0";
-  margin-right: 10px;
-}
-
-input.message {
-  width: 100%;
-  height: 50px;
-  padding: 10px;
-  font-size: 18px;
-  border: none;
-  border-radius: 30px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  /* Adding a placeholder color */
-  ::placeholder {
-    color: #ccc;
+&__message__options {
+  .option-item {
+    border: 0;
+    background: 0;
+    padding: 0;
+    margin: 0;
+    height: 16px;
+    width: 16px;
+    outline: none;
+  }
+  
+  .emoji-button {
+    svg {
+      stroke: var(--chat-options-svg);
+      fill: transparent;
+      width: 100%;
+    }
+  }
+  
+  .more-button {
+    svg {
+      stroke: var(--chat-options-svg);
+      fill: transparent;
+      width: 100%;
+    }
   }
 }
 
-input.message:focus {
-  outline: none;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-}
-
-.initModal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* Adding a fade-in animation */
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
+&__conversation-panel {
+  &__button {
+    &.add-file-button {
+      height: 23px;
+      min-width: 23px;
+      width: 23px;
+      background: var(--chat-add-button-background);
+      border-radius: 50%;
+      svg {
+        width: 70%;
+        stroke: #54575c;
+      }
+    }
+    
+    &.emoji-button {
+      min-width: 23px;
+      width: 23px;
+      height: 23px;
+      background: transparent;
+      border-radius: 50%;
+      svg {
+        width: 100%;
+        fill: transparent;
+        stroke: #54575c;
+      }
+    }
+    
+    &.send-message-button {
+      background: var(--chat-send-button-background);
+      height: 30px;
+      min-width: 30px;
+      border-radius: 50%;
+      transition: .3s ease;
+      &:active {
+        transform: scale(.97);
+      }
+      
+      svg {
+        margin: 1px -1px;
+      }
+    }
   }
-  100% {
-    opacity: 1;
+}
+
+@media only screen and (max-width: 600px) {
+  #chat {
+    margin: 0;
+    border-radius: 0;
   }
-}
-
-.initModal h3 {
-  font-weight: 300;
-  color: #fff;
-  margin-bottom: 20px;
-  /* Adding a text shadow effect */
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.initModal input.username {
-  width: 300px;
-  height: 50px;
-  padding: 10px;
-  font-size: 18px;
-  border: none;
-  border-radius: 30px;
-  background-color: #fff;
-  /* Adding a focus effect with box shadow */
-  focus {
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  
+  .chat__conversation-board {
+    height: calc(100vh - 55px - 2em - .5em - 3em);
+  }
+  
+  .chat__conversation-board__message__options {
+    display: none !important;
   }
 }
