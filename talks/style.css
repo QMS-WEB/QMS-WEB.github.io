@@ -1,31 +1,57 @@
-*, *:before, *:after, ul, li, a, button, input, h1, h2, h3, h4, h5, h6, p, img, image, svg, path, g {
+*,
+*:before,
+*:after,
+ul,
+li,
+a,
+button,
+input,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+img,
+image,
+svg,
+path,
+g {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   background-color: transparent;
   border: none;
   text-decoration: none;
-  font-family: "Roboto";
+  font-family: "Roboto", sans-serif;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
   list-style: none;
+  transition: all 0.3s ease-in-out; /* added transition effect */
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #eee;
-  font-family: "Roboto";
+  background-color: #f9f9f9; /* updated background color */
+  font-family: "Roboto", sans-serif;
+  overflow-x: hidden; /* added to prevent horizontal scrollbar */
 }
 
 li {
   opacity: 0;
   -webkit-animation: fadeIn 0.4s ease-in-out forwards;
           animation: fadeIn 0.4s ease-in-out forwards;
+  padding: 15px 25px; /* updated padding */
+  color: #333; /* updated text color */
+  word-break: break-all;
+  border-bottom: 1px solid #ccc; /* added border bottom */
 }
 
 @-webkit-keyframes fadeIn {
@@ -39,20 +65,17 @@ li {
     opacity: 1;
   }
 }
+
 .wrapper {
   width: 100%;
-  max-width: 650px;
+  max-width: 700px; /* updated max-width */
   margin: 0 auto;
-  padding-bottom: 70px;
+  padding-bottom: 100px; /* updated padding bottom */
   overflow-x: hidden;
   word-break: break-all;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* added box shadow */
 }
 
-li {
-  padding: 10px 20px;
-  color: #34495e;
-  word-break: break-all;
-}
 li span {
   color: #e74c3c;
   font-weight: 700;
@@ -60,18 +83,21 @@ li span {
 
 input.message {
   width: 100%;
-  max-width: 650px;
+  max-width: 700px; /* updated max-width */
   position: fixed;
   bottom: 0;
   height: 60px;
   background-color: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
-  padding: 0 20px;
+  padding: 0 25px; /* updated padding */
   left: 50%;
   transform: translateX(-50%);
+  border-radius: 30px; /* added border radius */
 }
+
 input.message:focus {
   outline: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* added focus box shadow */
 }
 
 .initModal {
@@ -85,11 +111,15 @@ input.message:focus {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 20px; /* added padding */
 }
+
 .initModal h3 {
   font-weight: 300;
   color: #777;
+  margin-bottom: 20px; /* added margin bottom */
 }
+
 .initModal input.username {
   width: 350px;
   height: 60px;
@@ -97,7 +127,10 @@ input.message:focus {
   padding: 0 15px;
   margin-top: 25px;
   color: #444;
+  border-radius: 30px; /* added border radius */
 }
+
 .initModal input.username:focus {
   outline: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* added focus box shadow */
 }
