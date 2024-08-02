@@ -57,6 +57,6 @@ input.on('keyup', function(e) {
 });
 
 messages.limitToLast(100).on("child_added", function(snap) {
-  wrap.append('<li><span>' + $.sanitize(snap.val().user) + ':</span> ' + $.sanitize(snap.val().message) + '</li>');
+  wrap.append('<p style="margin-bottom: 10px;"><span>' + $.sanitize(snap.val().user) + ':</span> ' + $.sanitize(snap.val().message) + '</p>');
   window.scrollTo(0,document.body.scrollHeight);
 });
