@@ -1,0 +1,7 @@
+.wrapper {
+  display: none; /* Hide the wrapper initially */
+}
+
+.message {
+  display: none; /* Hide the message input initially */
+}
