@@ -5,6 +5,7 @@ var btn = $('button');
 var wrap = $('.wrapper');
 var input = $('input.message');
 var usernameInput = $('input.username');
+var content = $('.content'); // Added this line
 
 var user = [];
 
@@ -23,9 +24,8 @@ usernameInput.on('keyup', function(e) {
     var getTxt = usernameInput.val();
     user.push(getTxt);
     usernameInput.val('');
-    $('.initModal').css('display', 'none');
+    content.css('display', 'none'); // Hide the content div
     wrap.css('display', 'block'); // Show the wrapper
-    input.css('display', 'block'); // Show the message input
     console.log(user);
   }
 });
