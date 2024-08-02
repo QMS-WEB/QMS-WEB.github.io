@@ -3,7 +3,7 @@
   display: none; /* Hide the wrapper initially */
 }
 
-.chat {
+.message {
   display: none; /* Hide the message input initially */
 }
 input.message {
