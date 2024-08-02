@@ -27,27 +27,151 @@ ss">
 
 
 
-<link rel="stylesheet" href="./styleway.css">
+<link rel="stylesheet" 
+
+href="./styleway.css">
+
+
+<link rel="stylesheet" href="./anim.css">
 
 </head>
 <body style="color="background:black;">
 <!-- 
 
 partial:index.partial.html -->
-<div class="wrapper"></div>
+
+<div class="card">
+  <svg 
+       viewBox="0 0 100% 100%"
+       
+
+xmlns='http://www.w3.org/2000/svg'
+       class="noise"
+       >
+    <filter 
+
+id='noiseFilter'>
+      <feTurbulence 
+                    type='fractalNoise' 
+                    baseFrequency='0.85' 
+                    numOctaves='6' 
+ 
+
+                   stitchTiles='stitch' />
+    </filter>
+
+    <rect
+          
+
+width='100%'
+          height='100%'
+          preserveAspectRatio="xMidYMid 
+
+meet"
+          filter='url(#noiseFilter)' />
+  </svg>
+  <div class="content">
+  
+
+ 
+<div class="wrapper">
+</div>
+
 
 <input 
 
-class="message" type="text" placeholder="Enter message and press enter"/>
+class="message" type="text" placeholder="Enter message and press 
+
+enter"/>
+
+
+
 
 <div class="initModal">
-	<h1> Welcome to QMS Talks </h1> <br><h3>What's your 
+<center>	<h1> Welcome to QMS Talks </h1> 
+
+<br><center><h3>What's your 
 
 name?</h3>
-	<input type="text" class="username" placeholder="Enter your 
+	<input type="text" class="username" 
 
-name and press enter"/>
+placeholder="Enter your 
+
+name and press enter"/></center>
 </div>
+
+
+
+</div>
+</div>
+<div class="gradient-bg">
+  <svg 
+       viewBox="0 0 100vw 100vw"
+ 
+
+      xmlns='http://www.w3.org/2000/svg'
+       class="noiseBg"
+       >
+    
+
+<filter id='noiseFilterBg'>
+      <feTurbulence 
+                    
+
+type='fractalNoise'
+                    baseFrequency='0.6'
+                   
+
+ stitchTiles='stitch' />
+    </filter>
+
+    <rect
+          width='100%'
+         
+
+ height='100%'
+          preserveAspectRatio="xMidYMid meet"
+          
+
+filter='url(#noiseFilterBg)' />
+  </svg>
+  <svg 
+
+xmlns="http://www.w3.org/2000/svg" class="svgBlur">
+    <defs>
+      <filter 
+
+id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" 
+
+result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 
+
+0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+        <feBlend 
+
+in="SourceGraphic" in2="goo" />
+      </filter>
+    </defs>
+  </svg>
+  <div 
+
+class="gradients-container">
+    <div class="g1"></div>
+    <div 
+
+class="g2"></div>
+    <div class="g3"></div>
+    <div class="g4"></div>
+    
+
+<div class="g5"></div>
+    <div class="interactive"></div>
+  </div>
+</div>
+
+
+
 <!-- partial -->
   <script 
 
@@ -58,5 +182,9 @@ src='https://cdn.firebase.com/js/client/2.4.1/firebase.js'></script><script
 
 src="./script.js"></script>
 
+
+<script  
+
+src="./anim.js"></script>
 </body>
 </html>
