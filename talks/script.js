@@ -48,9 +48,16 @@ input.on('keyup', function(e) {
   var curUsername = user.join();
   if (e.keyCode === 13 && input.val().length > 0) {
     var getTxt = input.val();
+    console.log("New message:", getTxt);
     messages.push({
       user: curUsername,
       message: getTxt
+    }, function(error) {
+      if (error) {
+        console.log("Error sending message:", error);
+      } else {
+        console.log("Message sent successfully!");
+      }
     });
     input.val('');
   }
