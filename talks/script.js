@@ -5,7 +5,8 @@ var btn = $('button');
 var wrap = $('.wrapper');
 var input = $('input.message');
 var usernameInput = $('input.username');
-var content = $('.content'); // Added this line
+var content = $('.content');
+var gradientBg = $('.gradient-bg');
 
 var user = [];
 
@@ -25,6 +26,7 @@ usernameInput.on('keyup', function(e) {
     user.push(getTxt);
     usernameInput.val('');
     content.css('display', 'none'); // Hide the content div
+    gradientBg.css('display', 'block'); // Show the gradient background
     wrap.css('display', 'block'); // Show the wrapper
     console.log(user);
   }
