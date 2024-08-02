@@ -38,6 +38,7 @@ usernameInput.on('keyup', function(e) {
       gradientBg.css('display', 'block'); // Show the gradient background
       wrap.css('display', 'block'); // Show the wrapper
       input.css('display', 'block'); // Show the message input field
+      input.removeAttr('disabled'); // Enable the input field
       console.log(user);
     }
   }
