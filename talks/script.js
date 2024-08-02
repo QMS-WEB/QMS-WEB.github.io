@@ -22,14 +22,24 @@ var user = [];
 
 usernameInput.on('keyup', function(e) {
   if (e.keyCode === 13 && usernameInput.val().length > 0) {
-    var getTxt = usernameInput.val();
-    user.push(getTxt);
-    usernameInput.val('');
-    content.css('display', 'none'); // Hide the content div
-    gradientBg.css('display', 'block'); // Show the gradient background
-    wrap.css('display', 'block'); // Show the wrapper
-    input.css('display', 'block'); // Show the message input field
-    console.log(user);
+    var getTxt = usernameInput.val().trim();
+    if (getTxt.toLowerCase() === "qms") {
+      // Display transparent dialog
+      var dialog = $('<div>').addClass('transparent-dialog').text('You are not allowed to use this name');
+      $('body').append(dialog);
+      setTimeout(function() {
+        dialog.remove();
+        usernameInput.val(''); // Clear the input field
+      }, 3000); // Remove dialog after 3 seconds
+    } else {
+      user.push(getTxt);
+      usernameInput.val('');
+      content.css('display', 'none'); // Hide the content div
+      gradientBg.css('display', 'block'); // Show the gradient background
+      wrap.css('display', 'block'); // Show the wrapper
+      input.css('display', 'block'); // Show the message input field
+      console.log(user);
+    }
   }
 });
 
