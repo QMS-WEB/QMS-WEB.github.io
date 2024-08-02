@@ -24,13 +24,13 @@ usernameInput.on('keyup', function(e) {
   if (e.keyCode === 13 && usernameInput.val().length > 0) {
     var getTxt = usernameInput.val().trim();
     if (getTxt.toLowerCase() === "qms") {
-      // Display transparent dialog
-      var dialog = $('<div>').addClass('transparent-dialog').text('You are not allowed to use this name');
-      $('body').append(dialog);
+      // Create a span element to display the error message
+      var errorMessage = $('<span>').addClass('error-message').text('This name is not allowed').css('color', 'red');
+      usernameInput.after(errorMessage); // Display the error message below the input field
       setTimeout(function() {
-        dialog.remove();
+        errorMessage.remove(); // Remove the error message after 3 seconds
         usernameInput.val(''); // Clear the input field
-      }, 3000); // Remove dialog after 3 seconds
+      }, 3000);
     } else {
       user.push(getTxt);
       usernameInput.val('');
