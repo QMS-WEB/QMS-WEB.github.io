@@ -37,8 +37,8 @@ usernameInput.on('keyup', function(e) {
       content.css('display', 'none'); // Hide the content div
       gradientBg.css('display', 'block'); // Show the gradient background
       wrap.css('display', 'block'); // Show the wrapper
-      input.css('display', 'block'); // Show the message input field
-      input.removeAttr('disabled'); // Enable the input field
+      input.css('display', 'block').removeAttr('disabled'); // Display and enable the input field
+      input.focus(); // Focus on the input field
       console.log(user);
     }
   }
