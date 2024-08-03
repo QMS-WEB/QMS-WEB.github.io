@@ -1,9 +1,3 @@
 <?php
-// Get the current time
-$current_time = date("H:i:s");
-
-// Output the current time in PJL format
-echo "@PJL\n";
-echo "@ECO TIME = $current_time\n";
-echo "@PJL EOJ\n";
+echo date("l, F j, Y h:i A"); // Output: Saturday, August 3, 2024 02:30 PM
 ?>
