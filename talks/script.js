@@ -1,13 +1,14 @@
 
 // Firebase Configuration
 var firebaseConfig = {
-  apiKey: "AIzaSyBItoxJf845iqdr4hwLJUKgT3RxpcS5BDQ",
-  authDomain: "YOUR_AUTH_DOMAIN",
+  apiKey: "AIzaSyBI4qzXVQFUhR8TNcWKw1qw8Un0EMC9_Sg",
+  authDomain: "qms-forum.firebaseapp.com",
   databaseURL: "https://qms-forum-default-rtdb.firebaseio.com",
   projectId: "qms-forum",
   storageBucket: "qms-forum.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "1:738142685059:web:6b5f38016c4633c26518b6"
+  messagingSenderId: "738142685059",
+  appId: "1:738142685059:web:6b5f38016c4633c26518b6",
+  measurementId: "G-0PMDLSEEEX"
 };
 
 // Initialize Firebase
