@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .game-list a {
+            text-decoration: none;
+            color: #337ab7;
+        }
+        .game-list a:hover {
+            color: #23527c;
+        }
+        .game-list li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .game-list li:hover {
+            background-color: #f7f7f7;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Game List</a>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Game List</h2>
+                    <ul class="game-list list-group">
+                        <li class="list-group-item"><a href="#game1">Game 1</a></li>
+                        <li class="list-group-item"><a href="#game2">Game 2</a></li>
+                        <li class="list-group-item"><a href="#game3">Game 3</a></li>
+                        <!-- Add more games here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Add event listener to each game link
+            $('.game-list a').on('click', function(event) {
+                // Prevent default link behavior
+                event.preventDefault();
+                // Get the game ID from the link href
+                const gameId = $(this).attr('href').replace('#', '');
+                // Do something with the game ID (e.g., load game details)
+                console.log(`Game ID: ${gameId}`);
+            });
+        });
+    </script>
+</body>
+</html>
