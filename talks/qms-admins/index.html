@@ -1,69 +1,258 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8">
   <title>QMS Talks</title>
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="./styleway.css">
-  <link rel="stylesheet" href="./anim.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato'><link rel="stylesheet" href="./style.css">
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src='https://cdn.firebase.com/js/client/2.4.1/firebase.js'></script>
 </head>
-<body style="background-color: black;">
-  <div class="card">
-    <svg viewBox="0 0 100% 100%" xmlns='http://www.w3.org/2000/svg' class="noise">
-      <filter id='noiseFilter'>
-        <feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='6' stitchTiles='stitch' />
-      </filter>
-      <rect width='100%' height='100%' preserveAspectRatio="xMidYMid meet" filter='url(#noiseFilter)' />
-    </svg>
-    <div class="content">
-      <div class="initModal">
-        <center>
-          <h1>Welcome to QMS Talks</h1>
-          <br>
-          <h3>What's your name?</h3>
-          <input type="text" class="username" placeholder="Enter your name and press enter"/>
-<br>
-          <span class="if" style="color:white">No need to Signup, just enter your desire name and you are good to Go!.</span>
-        </center>
+<body>
+<!-- partial:index.partial.html -->
+<header>
+<h1 id="h1-message"> Welcome to QMS Talks </h1>
+</header>
+<div>
+<div class="--dark-theme" id="chat">
+  <div class="chat__conversation-board">
+    <div class="chat__conversation-board__message-container">
+      <div class="chat__conversation-board__message__person">
+        <div class="chat__conversation-board__message__person__avatar"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Monika Figi"/></div><span class="chat__conversation-board__message__person__nickname">Monika Figi</span>
+      </div>
+      <div class="chat__conversation-board__message__context">
+        <div class="chat__conversation-board__message__bubble"> <span>Somewhere stored deep, deep in my memory banks is the phrase &quot;It really whips the llama's ass&quot;.</span></div>
+      </div>
+      <div class="chat__conversation-board__message__options">
+        <button class="btn-icon chat__conversation-board__message__option-button option-item emoji-button">
+          <svg class="feather feather-smile sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+          </svg>
+        </button>
+        <button class="btn-icon chat__conversation-board__message__option-button option-item more-button">
+          <svg class="feather feather-more-horizontal sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="1"></circle>
+            <circle cx="19" cy="12" r="1"></circle>
+            <circle cx="5" cy="12" r="1"></circle>
+          </svg>
+        </button>
       </div>
     </div>
-    <div class="chat">
-      <div class="wrapper"></div>
-      <input class="message" type="text" placeholder="Enter message and press enter"/>
+    <div class="chat__conversation-board__message-container">
+      <div class="chat__conversation-board__message__person">
+        <div class="chat__conversation-board__message__person__avatar"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Thomas Rogh"/></div><span class="chat__conversation-board__message__person__nickname">Thomas Rogh</span>
+      </div>
+      <div class="chat__conversation-board__message__context">
+        <div class="chat__conversation-board__message__bubble"> <span>Think the guy that did the voice has a Twitter?</span></div>
+      </div>
+      <div class="chat__conversation-board__message__options">
+        <button class="btn-icon chat__conversation-board__message__option-button option-item emoji-button">
+          <svg class="feather feather-smile sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+          </svg>
+        </button>
+        <button class="btn-icon chat__conversation-board__message__option-button option-item more-button">
+          <svg class="feather feather-more-horizontal sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="1"></circle>
+            <circle cx="19" cy="12" r="1"></circle>
+            <circle cx="5" cy="12" r="1"></circle>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="chat__conversation-board__message-container">
+      <div class="chat__conversation-board__message__person">
+        <div class="chat__conversation-board__message__person__avatar"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Monika Figi"/></div><span class="chat__conversation-board__message__person__nickname">Monika Figi</span>
+      </div>
+      <div class="chat__conversation-board__message__context">
+        <div class="chat__conversation-board__message__bubble"> <span>WE MUST FIND HIM!!</span></div>
+        <div class="chat__conversation-board__message__bubble"> <span>Wait ...</span></div>
+      </div>
+      <div class="chat__conversation-board__message__options">
+        <button class="btn-icon chat__conversation-board__message__option-button option-item emoji-button">
+          <svg class="feather feather-smile sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+          </svg>
+        </button>
+        <button class="btn-icon chat__conversation-board__message__option-button option-item more-button">
+          <svg class="feather feather-more-horizontal sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="1"></circle>
+            <circle cx="19" cy="12" r="1"></circle>
+            <circle cx="5" cy="12" r="1"></circle>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="chat__conversation-board__message-container reversed">
+      <div class="chat__conversation-board__message__person">
+        <div class="chat__conversation-board__message__person__avatar"><img src="https://randomuser.me/api/portraits/men/9.jpg" alt="QMS"/></div><span class="chat__conversation-board__message__person__nickname">QMS</span>
+      </div>
+      <div class="chat__conversation-board__message__context">
+        <div class="chat__conversation-board__message__bubble"> <p style="direction:rtl;color:white;">  <sub>QMS Admin</sub> </p><span>Hi, Everyone In a little while, individuals will able to upload MEDIAS,FILES,AUDIO CHAT, VIDEO CALLS, Comment on POST, Read Post and Lots more on the website talks by QMS <br> <sub style="color:var(--chat-text-color);;"> 2:55 PM August, Tuesday 2024</sub></span></div>
+      </div>
+      <div class="chat__conversation-board__message__options">
+        <button class="btn-icon chat__conversation-board__message__option-button option-item emoji-button">
+          <svg class="feather feather-smile sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+          </svg>
+        </button>
+        <button class="btn-icon chat__conversation-board__message__option-button option-item more-button">
+          <svg class="feather feather-more-horizontal sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="1"></circle>
+            <circle cx="19" cy="12" r="1"></circle>
+            <circle cx="5" cy="12" r="1"></circle>
+          </svg>
+        </button>
+      </div>
+    </div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="chat__conversation-board__message-container">
+      <div class="chat__conversation-board__message__person">
+        <div class="chat__conversation-board__message__person__avatar"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Monika Figi"/></div><span class="chat__conversation-board__message__person__nickname">Monika Figi</span>
+      </div>
+      <div class="chat__conversation-board__message__context">
+        <div class="chat__conversation-board__message__bubble"> <span>Somewhere stored deep, deep in my memory banks is the phrase &quot;It really whips the llama's ass&quot;.</span></div>
+      </div>
+	  
+	  
+      <div class="chat__conversation-board__message__options">
+        <button class="btn-icon chat__conversation-board__message__option-button option-item emoji-button">
+          <svg class="feather feather-smile sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+          </svg>
+        </button>
+        <button class="btn-icon chat__conversation-board__message__option-button option-item more-button">
+          <svg class="feather feather-more-horizontal sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="1"></circle>
+            <circle cx="19" cy="12" r="1"></circle>
+            <circle cx="5" cy="12" r="1"></circle>
+          </svg>
+        </button>
+      </div>
+    </div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="chat__conversation-panel">
+    <div class="chat__conversation-panel__container">
+      <button class="chat__conversation-panel__button panel-item btn-icon add-file-button">
+        <svg class="feather feather-plus sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+      </button>
+      <button class="chat__conversation-panel__button panel-item btn-icon emoji-button">
+        <svg class="feather feather-smile sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+          <line x1="9" y1="9" x2="9.01" y2="9"></line>
+          <line x1="15" y1="9" x2="15.01" y2="9"></line>
+        </svg>
+      </button>
+      <input class="chat__conversation-panel__input panel-item" placeholder="Type a message..."/>
+      <button class="chat__conversation-panel__button panel-item btn-icon send-message-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-reactid="1036">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
     </div>
   </div>
-  <div class="gradient-bg">
-    <svg viewBox="0 0 100vw 100vw" xmlns='http://www.w3.org/2000/svg' class="noiseBg">
-      <filter id='noiseFilterBg'>
-        <feTurbulence type='fractalNoise' baseFrequency='0.6' stitchTiles='stitch' />
-      </filter>
-      <rect width='100%' height='100%' preserveAspectRatio="xMidYMid meet" filter='url(#noiseFilterBg)' />
-    </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" class="svgBlur">
-      <defs>
-        <filter id="goo">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
-          <feBlend in="SourceGraphic" in2="goo" />
-        </filter>
-      </defs>
-    </svg>
-    <div class="gradients-container">
-      <div class="g1"></div>
-      <div class="g2"></div>
-      <div class="g3"></div>
-      <div class="g4"></div>
-      <div class="g5"></div>
-      <div class="interactive"></div>
+</div>
+</div>
+
+ <div class="setup" style="display:none;">
+      <input type="text" id="user-name" placeholder="Enter your name">
+      <select id="profile-image">
+        <option value="https://randomuser.me/api/portraits/women/44.jpg">Profile Image 1</option>
+        <option value="https://randomuser.me/api/portraits/men/32.jpg">Profile Image 2</option>
+        <option value="https://randomuser.me/api/portraits/women/22.jpg">Profile Image 3</option>
+        <option value="https://randomuser.me/api/portraits/men/11.jpg">Profile Image 4</option>
+        <option value="https://randomuser.me/api/portraits/women/33.jpg">Profile Image 5</option>
+      </select>
+      <button id="start-button">Start Chatting</button>
     </div>
-  </div>
-  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  <script src='https://cdn.firebase.com/js/client/2.4.1/firebase.js'></script>
-  <script src="./script.js"></script>
-  <script src="./anim.js"></script>
+
+
+
+
+
+
+
+
+<!-- partial -->
+  <script  src="./script.js"></script>
+
 </body>
 </html>

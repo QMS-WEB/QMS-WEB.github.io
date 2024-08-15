@@ -1,48 +1,74 @@
-// If you fork this, please change this database link to your own.
-var fb = new Firebase("https://qms-forum-default-rtdb.firebaseio.com/");
-var messages = fb.child("messages");
-var btn = $('button');
-var wrap = $('.wrapper');
-var input = $('input.message');
-var usernameInput = $('input.username');
-var content = $('.content'); // Added this line
 
-var user = [];
+// Initialize Firebase Realtime Database
+const fb = new Firebase("https://qms-forum-default-rtdb.firebaseio.com/");
+const messages = fb.child("talks");
 
-(function($) {
-  $.sanitize = function(input) {
-    var output = input.replace(/<script[^>]*?>.*?<\/script>/gi, '').
-                  replace(/<[\/\!]*?[^<>]*?>/gi, '').
-                  replace(/<style[^>]*?>.*?<\/style>/gi, '').
-                  replace(/<![\s\S]*?--[ \t\n\r]*>/gi, '');
-    return output;
-  };
-})(jQuery);
+// Get the input field, send button, and conversation board elements
+const inputField = $('.chat__conversation-panel__input');
+const sendButton = $('.send-message-button');
+const conversationBoard = $('.chat__conversation-board');
 
-usernameInput.on('keyup', function(e) {
-  if (e.keyCode === 13 && usernameInput.val().length > 0) {
-    var getTxt = usernameInput.val();
-    user.push(getTxt);
-    usernameInput.val('');
-    content.css('display', 'none'); // Hide the content div
-    wrap.css('display', 'block'); // Show the wrapper
-    console.log(user);
-  }
+
+const userNameInput = document.getElementById('user-name');
+const profileImageSelect = document.getElementById('profile-image');
+const startButton = document.getElementById('start-button');
+const chatDiv = document.getElementById('chat');
+
+startButton.addEventListener('click', () => {
+  const username = userNameInput.value;
+  const profileImage = profileImageSelect.value;
+
+  // Use the username and profile image URL here
+  console.log(username, profileImage);
 });
 
-input.on('keyup', function(e) {
-  var curUsername = user.join();
-  if (e.keyCode === 13 && input.val().length > 0) {
-    var getTxt = input.val();
+
+// Add an event listener to the send button
+sendButton.click(function() {
+  // Get the user's input from the input field
+  const userInput = inputField.val().trim();
+
+  // Check if the input is not empty
+  if (userInput) {
+    // Send the message to Firebase Realtime Database
     messages.push({
-      user: curUsername,
-      message: getTxt
+      username: 'Monika Figi',
+      profileUrl: 'https://randomuser.me/api/portraits/women/44.jpg',
+      text: userInput
     });
-    input.val('');
+
+    // Clear the input field
+    inputField.val('');
   }
 });
 
-messages.limitToLast(100).on("child_added", function(snap) {
-  wrap.append('<li><span>' + $.sanitize(snap.val().user) + ':</span> ' + $.sanitize(snap.val().message) + '</li>');
-  window.scrollTo(0,document.body.scrollHeight);
+// Listen for new messages from Firebase Realtime Database
+messages.on('child_added', function(data) {
+  const message = data.val();
+  const messageContainer = $('<div>').addClass('chat__conversation-board__message-container');
+
+  const person = $('<div>').addClass('chat__conversation-board__message__person');
+
+  const avatar = $('<div>').addClass('chat__conversation-board__message__person__avatar');
+  const img = $('<img>').attr('src', message.profileUrl).attr('alt', message.username);
+  avatar.append(img);
+
+  const nickname = $('<span>').addClass('chat__conversation-board__message__person__nickname').text(message.username);
+
+  person.append(avatar);
+  person.append(nickname);
+
+  const context = $('<div>').addClass('chat__conversation-board__message__context');
+
+  const bubble = $('<div>').addClass('chat__conversation-board__message__bubble');
+  const messageText = $('<span>').text(message.text);
+  bubble.append(messageText);
+
+  context.append(bubble);
+
+  messageContainer.append(person);
+  messageContainer.append(context);
+
+  conversationBoard.append(messageContainer);
+  chatDiv.scrollTop = chatDiv.scrollHeight;
 });
