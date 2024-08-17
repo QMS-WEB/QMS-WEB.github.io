@@ -4,22 +4,77 @@
   <meta charset="UTF-8">
   <title>QMS Talks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato'><link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="libs/styled-dialog.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato'><link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="libs/styled-dialog.css"> <link rel="stylesheet" href="libs/head-tab.css">
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script src='https://cdn.firebase.com/js/client/2.4.1/firebase.js'></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="libs/check_internet.js"></script> 
-   <script  src="script.js"></script>
-	
+ <script src="
+https://cdn.jsdelivr.net/npm/es6-module-loader@0.17.11/dist/es6-module-loader.min.js
+"></script>
+  <script type="module" src="libs/handle-js.js"></script>
 </head>
 <body>
 <!-- partial:index.partial.html -->
 <header>
 <h1 id="h1-message"> Welcome to QMS Talks </h1>
+<nav class="tab-bar">
+	<ul class="tab-bar__tabs">
+		<li class="tab-bar__tab">
+			<a class="tab-bar__tab-link" href="#home" aria-current="page">
+				<svg class="tab-bar__tab-icon tab-bar__tab-icon--home" viewBox="0 0 24 24" width="24px" height="24px" aria-hidden="true">
+					<g class="tab-bar__tab-icon-1" fill="var(--focus-t)" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+						<polygon points="12 1,23 10,23 23,16 23,16 14,8 14,8 23,1 23,1 10" />
+					</g>
+				</svg>
+				<span class="tab-bar__tab-name">Home</span>
+			</a>
+		</li>
+		<li class="tab-bar__tab">
+			<a class="tab-bar__tab-link" href="#videos">
+				<svg class="tab-bar__tab-icon tab-bar__tab-icon--videos" viewBox="0 0 24 24" width="24px" height="24px" aria-hidden="true">
+					<g fill="var(--focus-t)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<line class="tab-bar__tab-icon-1" x1="3" y1="1" x2="21" y2="1" />
+						<line x1="2" y1="5" x2="22" y2="5" />
+						<g class="tab-bar__tab-icon-2" transform="translate(1,9)">
+							<polygon points="9 3,15 7.5,9 11" />
+							<rect rx="2" ry="2" width="22" height="14" />
+							<polygon class="tab-bar__tab-icon-3" opacity="0" points="9 3,15 7.5,9 11" />
+						</g>
+					</g>
+				</svg>
+				<span class="tab-bar__tab-name">Videos</span>
+			</a>
+		</li>
+		<li class="tab-bar__tab">
+			<a class="tab-bar__tab-link" href="#books">
+				<svg class="tab-bar__tab-icon tab-bar__tab-icon--chat" viewBox="0 0 24 24" width="24px" height="24px" aria-hidden="true">
+					<g class="tab-bar__tab-icon-1" fill="var(--focus-t)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<rect class="tab-bar__tab-icon-2" x="1" y="1" rx="2" ry="2" width="11" height="19" />
+						<rect class="tab-bar__tab-icon-3" x="12" y="1" rx="2" ry="2" width="11" height="19" />
+						<line x1="12" y1="21" x2="12" y2="23" />
+					</g>
+				</svg>
+				<span class="tab-bar__tab-name">Notifications</span>
+			</a>
+		</li>
+		<li class="tab-bar__tab">
+			<a class="tab-bar__tab-link" href="#profile">
+				<svg class="tab-bar__tab-icon tab-bar__tab-icon--profile" viewBox="0 0 24 24" width="24px" height="24px" aria-hidden="true">
+					<g fill="var(--focus-t)" stroke="currentColor" stroke-width="2">
+						<circle class="tab-bar__tab-icon-1" cx="12" cy="6.5" r="5.5"/>
+						<path d="M20.473,23H3.003c-1.276,0-2.228-1.175-1.957-2.422,.705-3.239,3.029-8.578,10.693-8.578s9.987,5.336,10.692,8.575c.272,1.248-.681,2.425-1.959,2.425Z"/>
+					</g>
+				</svg>
+				<span class="tab-bar__tab-name">Profile</span>
+			</a>
+		</li>
+	</ul>
+</nav>
 </header>
 <div>
 <div class="--dark-theme" id="chat">
-  <div class="chat__conversation-board">
+  <div class="chat__conversation-board"> 
     <div class="chat__conversation-board__message-container">
       <div class="chat__conversation-board__message__person">
         <div class="chat__conversation-board__message__person__avatar"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Monika Figi"/></div><span class="chat__conversation-board__message__person__nickname">Monika Figi</span>
@@ -236,9 +291,9 @@
 </div>
 </div>
 
- <div class="setup" style="display:none;">
+ <div class="setup" style="display:;">
       <input type="text" id="user-name" placeholder="Enter your name">
-      <select id="profile-image">
+      <select id="profile-image" class="round-imag">
         <option value="https://randomuser.me/api/portraits/women/44.jpg">Profile Image 1</option>
         <option value="https://randomuser.me/api/portraits/men/32.jpg">Profile Image 2</option>
         <option value="https://randomuser.me/api/portraits/women/22.jpg">Profile Image 3</option>
@@ -257,6 +312,7 @@
 
 <!-- partial -->
   <script  src="./script.js"></script>
+   <script  src="libs/head-tab.js"></script>
 
 </body>
 </html>
