@@ -32,8 +32,8 @@ sendButton.click(function() {
   if (userInput) {
     // Send the message to Firebase Realtime Database
     messages.push({
-      username: username,
-      profileUrl: profileImage,
+      username: 'Monika Figi',
+      profileUrl: 'https://randomuser.me/api/portraits/women/44.jpg',
       text: userInput
     });
 
