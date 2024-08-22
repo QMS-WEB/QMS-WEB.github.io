@@ -5,6 +5,7 @@ function checkInternetConnection() {
   if (previousInternetStatus !== currentInternetStatus) {
     if (currentInternetStatus) {
       Swal.fire('Internet connection is active', '', 'success');
+    
     } else {
       Swal.fire('Internet connection is not active', '', 'error');
     }
@@ -12,4 +13,4 @@ function checkInternetConnection() {
   }
 }
 
-setInterval(checkInternetConnection, 5000);
+setInterval(checkInternetConnection, 1000);

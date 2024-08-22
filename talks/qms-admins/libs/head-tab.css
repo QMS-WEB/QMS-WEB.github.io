@@ -15,13 +15,13 @@
 
 .tab-bar {
   background-color:transparent;
-  border-radius: 2em;
+  border-radius: 0em;
   box-shadow: 0 0 0.75em hsla(var(--hue), 10%, 10%, 0.1);
   margin: auto;
   width: 100%;
   max-width: 99%;
   transition: background-color var(--trans-dur), box-shadow var(--trans-dur);
-}
+} 
 .tab-bar__tabs {
   display: flex;
   justify-content: space-between;
@@ -266,4 +266,12 @@
     transform: translateX(-1px);
   }
 }
-header{position:relative;}
+
+
+
+
+
+
+
+
+/* Default styles */
