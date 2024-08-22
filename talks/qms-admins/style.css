@@ -1,5 +1,5 @@
 .--dark-theme {
-  --chat-background: rgba(10, 14, 14, 0.95);
+  --chat-background: ;
   --chat-panel-background: #131719;
   --chat-bubble-background: #14181a;
   --chat-add-button-background: #212324;
@@ -18,8 +18,8 @@ body {
   max-width: 100%;
   margin: 25px auto;
   box-sizing: border-box;
-  padding: 1em;
-  border-radius: 12px;
+  padding: 2em;
+  border-radius: 1px;
   position: relative;
   overflow:hidden ;
 }
@@ -47,7 +47,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-#chat .chat__conversation-board {
+ #chat .chat__conversation-board {
   padding: 1em 0 2em;
   height: calc(100vh - 55px - 2em - 25px * 2 - .5em - 3em);
   overflow: auto;
@@ -259,17 +259,59 @@ body {
 #h1-message{
 	
 	color: orange;
-	text-align:center;
+	text-align:;
+	font-family:Times New Roman ;
 	
 	
 	}
 	
 	header{
-	background: transparent;
-    position: fixe;
+	background: black;
+    position: stiky;
 	border:0px solid ;
     color: black;
 	text-align:center;
 	z-index: 1;
 	width: 100%;
 	}  
+	
+	.round-image {
+	border-radius:100%; 
+	height: 100px; 
+	margin: 0 auto;
+	overflow:hidden;
+	width: 100px; 
+}
+start-button{
+	
+}
+/* Add loading dialog styles */
+#loading-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loading-dialog .spinner-border {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
