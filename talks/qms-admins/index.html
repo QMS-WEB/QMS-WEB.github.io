@@ -17,7 +17,7 @@ https://cdn.jsdelivr.net/npm/es6-module-loader@0.17.11/dist/es6-module-loader.mi
 
 <!-- partial:index.partial.html -->
 <header>
-<h1 id="h1-message"> Welcome to QMS Talks </h1>
+<h1 id="h1-message"> QMS Talks</h1>
 <nav class="tab-bar">
 	<ul class="tab-bar__tabs">
 		<li class="tab-bar__tab">
@@ -30,8 +30,8 @@ https://cdn.jsdelivr.net/npm/es6-module-loader@0.17.11/dist/es6-module-loader.mi
 				<span class="tab-bar__tab-name">Home</span>
 			</a>
 		</li>
-		<li class="tab-bar__tab">
-			<a class="tab-bar__tab-link" href="#videos">
+		<li class="tab-bar__tab" onclick="prompt("smile");">
+			<a class="tab-bar__tab-link" href="#videos" >
 				<svg class="tab-bar__tab-icon tab-bar__tab-icon--videos" viewBox="0 0 24 24" width="24px" height="24px" aria-hidden="true">
 					<g fill="var(--focus-t)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 						<line class="tab-bar__tab-icon-1" x1="3" y1="1" x2="21" y2="1" />
@@ -59,6 +59,18 @@ https://cdn.jsdelivr.net/npm/es6-module-loader@0.17.11/dist/es6-module-loader.mi
 			</a>
 		</li>
 		<li class="tab-bar__tab">
+			<a class="tab-bar__tab-link" href="#books">
+				<svg class="tab-bar__tab-icon tab-bar__tab-icon--chat" viewBox="0 0 24 24" width="24px" height="24px" aria-hidden="true">
+					<g class="tab-bar__tab-icon-1" fill="var(--focus-t)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<rect class="tab-bar__tab-icon-2" x="1" y="1" rx="2" ry="2" width="11" height="19" />
+						<rect class="tab-bar__tab-icon-3" x="12" y="1" rx="2" ry="2" width="11" height="19" />
+						<line x1="12" y1="21" x2="12" y2="23" />
+					</g>
+				</svg>
+				<span class="tab-bar__tab-name">Messages</span>
+			</a>
+		</li>
+		<li class="tab-bar__tab">
 			<a class="tab-bar__tab-link" href="#profile">
 				<svg class="tab-bar__tab-icon tab-bar__tab-icon--profile" viewBox="0 0 24 24" width="24px" height="24px" aria-hidden="true">
 					<g fill="var(--focus-t)" stroke="currentColor" stroke-width="2">
@@ -76,11 +88,14 @@ https://cdn.jsdelivr.net/npm/es6-module-loader@0.17.11/dist/es6-module-loader.mi
 
 
 </header>
+
+<div class="chats-tab" style="display:;">
 <div>
+
 <div class="--dark-theme" id="chat">
   <div class="chat__conversation-board"> 
   
-     <center> <sub> <h2 style="color:white; font-family:Kristen ITC;"> <i> ...Starts Talks Chat... </i></h2></sub></center>
+     <center> <sub> <h4 style="color:white; font-family:Kristen ITC;"> <i> ...Starts Talks Chat... </i></h4></sub></center>
     
     <div class="chat__conversation-board__message-container reversed">
       <div class="chat__conversation-board__message__person">
@@ -116,10 +131,10 @@ https://cdn.jsdelivr.net/npm/es6-module-loader@0.17.11/dist/es6-module-loader.mi
 	
 	<div class="chat__conversation-board__message-container">
       <div class="chat__conversation-board__message__person">
-        <div class="chat__conversation-board__message__person__avatar"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Monika Figi"/></div><span class="chat__conversation-board__message__person__nickname">Monika Figi</span>
+        <div class="chat__conversation-board__message__person__avatar"><img src="https://randomuser.me/api/portraits/women/42.jpg" alt="User"/></div><span class="chat__conversation-board__message__person__nickname">User</span>
       </div>
       <div class="chat__conversation-board__message__context">
-        <div class="chat__conversation-board__message__bubble"> <span>Hi Everyone &quot;.</span></div>
+        <div class="chat__conversation-board__message__bubble"> <span> Hi Everyone </span></div>
       </div>
 	  
 	  
@@ -222,21 +237,37 @@ https://cdn.jsdelivr.net/npm/es6-module-loader@0.17.11/dist/es6-module-loader.mi
 </div>
 </div>
 
- <div class="setup" style="display:;">
-      <input type="text" id="user-name" placeholder="Enter your name">
-      <select id="profile-image" class="round-imag">
-        <option value="https://randomuser.me/api/portraits/women/44.jpg">Profile Image 1</option>
-        <option value="https://randomuser.me/api/portraits/men/32.jpg">Profile Image 2</option>
-        <option value="https://randomuser.me/api/portraits/women/22.jpg">Profile Image 3</option>
-        <option value="https://randomuser.me/api/portraits/men/11.jpg">Profile Image 4</option>
-        <option value="https://randomuser.me/api/portraits/women/33.jpg">Profile Image 5</option>
-      </select>
-      <button id="start-button">Start Chatting</button>
-    </div>
+ 
+</div>
 
 
 
 
+<div class="home-tab">
+
+</div>
+
+
+
+<div class="videos-tab">
+
+</div>
+
+
+<div class="notification-tab">
+
+</div>
+
+
+<div class="profile-tab">
+
+</div>
+
+
+
+<div class="home-tab">
+
+</div>
 
 
 
