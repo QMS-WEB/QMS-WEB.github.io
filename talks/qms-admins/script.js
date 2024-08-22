@@ -1,27 +1,47 @@
-
 // Initialize Firebase Realtime Database
 const fb = new Firebase("https://qms-forum-default-rtdb.firebaseio.com/");
 const messages = fb.child("talks");
+
+// setup user account 
+let username;
+let profileImage;
+
+Swal.fire({
+  title: 'Setup Profile Image',
+  html: `
+    <div class="setup" style="display:block;">
+      <input type="text" id="user-name" placeholder="Enter your name">
+      <select id="profile-image" class="round-imag">
+        <option value="https://randomuser.me/api/portraits/women/44.jpg">Profile Image 1</option>
+        <option value="https://randomuser.me/api/portraits/men/32.jpg">Profile Image 2</option>
+        <option value="https://randomuser.me/api/portraits/women/22.jpg">Profile Image 3</option>
+        <option value="https://randomuser.me/api/portraits/men/11.jpg">Profile Image 4</option>
+        <option value="https://randomuser.me/api/portraits/women/33.jpg">Profile Image 5</option>
+      </select>
+      <button id="start-button">Start Chatting</button>
+    </div>
+  `,
+  icon: '',
+  allowOutsideClick: false,
+  allowEscapeKey: false,
+  showCancelButton: false,
+});
 
 // Get the input field, send button, and conversation board elements
 const inputField = $('.chat__conversation-panel__input');
 const sendButton = $('.send-message-button');
 const conversationBoard = $('.chat__conversation-board');
-
+const chatDiv = document.getElementById('chat');
 
 const userNameInput = document.getElementById('user-name');
 const profileImageSelect = document.getElementById('profile-image');
 const startButton = document.getElementById('start-button');
-const chatDiv = document.getElementById('chat');
 
 startButton.addEventListener('click', () => {
-  const username = userNameInput.value;
-  const profileImage = profileImageSelect.value;
-
-  // Use the username and profile image URL here
+  username = userNameInput.value.trim();
+  profileImage = profileImageSelect.value.trim();
   console.log(username, profileImage);
 });
-
 
 // Add an event listener to the send button
 sendButton.click(function() {
@@ -32,8 +52,8 @@ sendButton.click(function() {
   if (userInput) {
     // Send the message to Firebase Realtime Database
     messages.push({
-      username: 'Monika Figi',
-      profileUrl: 'https://randomuser.me/api/portraits/women/44.jpg',
+      username: username,
+      profileUrl: profileImage,
       text: userInput
     });
 
@@ -71,4 +91,9 @@ messages.on('child_added', function(data) {
 
   conversationBoard.append(messageContainer);
   chatDiv.scrollTop = chatDiv.scrollHeight;
+});
+
+$('#loading-dialog').hide();
+$(document).ready(function() {
+  $('#loading-dialog').show();
 });
