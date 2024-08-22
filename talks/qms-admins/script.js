@@ -91,9 +91,13 @@ messages.on('child_added', function(data) {
 
   conversationBoard.append(messageContainer);
   chatDiv.scrollTop = chatDiv.scrollHeight;
+  // Audio voice notification
+const utterance = new SpeechSynthesisUtterance(message.text);
+window.speechSynthesis.speak(utterance);
 });
 
 $('#loading-dialog').hide();
 $(document).ready(function() {
   $('#loading-dialog').show();
 });
+// Audio voice notification
