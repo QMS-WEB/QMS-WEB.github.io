@@ -120,14 +120,33 @@ hr {
   }
 }
        
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
     </style>
 </head>
 <body>
+
+
+
+
 <br><br><br>
     <div class="form-container" style="background:white;">
         <center>
-      <h1> E-CBT Registration </h1> 
-        <h2>Registration Form- E-CBT Training</h2>
+      <h1> E-CBT </h1> 
+        <h2>Registration</h2>
         </center>
         <form id="courseRequestForm" style="background-color: #f9f9f9; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
         
@@ -137,9 +156,10 @@ hr {
             <div class="profile-icon-container">
             
          </div>
+         
          <input type="file" id="image-input" accept="image/*">
          <span id="download-url"></span>
-         
+         <h1 id="click"> Click To Upload Profile</h1>
                 <hr>
             <br>
             
@@ -295,6 +315,14 @@ hr {
     <p id="progress-text"></p>
     </center>
 </div>
+
+
+<!-- index.html -->
+<button id="open-dialog" data-toggle="modal" data-target="#dialog-modal">Open Dialog</button>
+<div id="dialog-container" style="display:none;">
+  <!-- Dialog content will be loaded here -->
+</div
+
 
     <!-- Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -453,6 +481,46 @@ hr {
 
 
 
+  const openDialogButton = document.getElementById('click');
+  const dialogContainer = document.getElementById('dialog-container');
+
+  openDialogButton.addEventListener('click', async () => {
+    // Load the dialog HTML
+    const response = await fetch('Image.html');
+    const html = await response.text();
+
+    // Set the dialog content
+    dialogContainer.innerHTML = html;
+
+    // Show the dialog
+    $('#dialog-container').iziModal({
+      title: 'Upload Profile',
+      subtitle: 'Upload Profile/Cover Photo', 
+      icon: 'icon-class',
+      width: 600,
+      height: 400,
+      timeout: 5000,
+      timeoutProgressbar: true,
+      pauseOnHover: true,
+      loop: false,
+      arrowKeys: true,
+      focusInput: true,
+      navigateCaption: true,
+      navigateArrows: true,
+      onOpening: function(modal){
+        console.log('Modal is opening');
+      },
+      onOpened: function(modal){
+        console.log('Modal is opened');
+      },
+      onClosing: function(modal){
+        console.log('Modal is closing');
+      },
+      onClosed: function(modal){
+        console.log('Modal is closed');
+      }
+    }).iziModal('open');
+  });
 
 
  
@@ -478,6 +546,10 @@ hr {
   
 </script>
      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase.js"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/css/iziModal.min.css" />
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js"></script>
+     
+     
 </body>
 </html>
 
