@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Schedule</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" class="logo">E-CBT Class Schedule</a></li>
+                <li><a href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    
+    <br>
+    
+   
+    
+
+    <button style="padding-left:20px; margin-left:20px;" id="view-schedule-btn">Click View (Class Price List) </button> 
+    
+    <div id="price" class="dialog-popup">
+    <div class="dialog-content">
+    <h2 style="text-align: center; color: #2e7d32;">E-CBT Subscription Plan</h2>
+    <ul style="list-style-type: none; padding: 0;">
+    <li style="background-color: #e0f2f1; margin-bottom: 15px; padding: 15px; border-radius: 8px; border: 1px solid #b2dfdb;"> 
+    <strong>₦1,000</strong> for 1 month 
+    </li>
+    <li style="background-color: #b2ebf2; margin-bottom: 15px; padding: 15px; border-radius: 8px; border: 1px solid #80deea;"> 
+    <strong>₦2,000</strong> for 2 months 
+    </li>
+    <li style="background-color: #80deea; margin-bottom: 15px; padding: 15px; border-radius: 8px; border: 1px solid #4dd0e1;"> 
+    <strong>₦3,000</strong> for 3 months <span style="color: #d32f2f;">(Recommended)</span> 
+    </li>
+    <li style="background-color: #4dd0e1; margin-bottom: 15px; padding: 15px; border-radius: 8px; border: 1px solid #26c6da;"> 
+    <strong>₦4,000</strong> for 4 months 
+    </li>
+    <li style="background-color: #26c6da; padding: 15px; border-radius: 8px; border: 1px solid #00bcd4;"> 
+    <strong>₦5,000</strong> for 5 months <span style="color: #d32f2f;"> Complete Traning (Best) </span> 
+    </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    
+    <br>
+    <main>
+    
+   
+        <section class="schedule-container">
+            <h2>Select a Class</h2>
+            <div class="select-container">
+                <select id="class-select">
+                    <!-- Options will be populated dynamically -->
+                </select>
+                    </div>
+            <div id="schedule-display">
+                <table id="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Week</th>
+                            <th>Subjects</th>
+                        </tr>
+                    </thead>
+                    <tbody id="schedule-tbody">
+                        <!-- Schedule data will be populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    
+    <center> <h4> Select a class to see subject</h4>
+     <h4> More Week will be dropping soon</h4> </center>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+header nav ul li {
+    margin-right: 20px;
+}
+
+header nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header nav a.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.schedule-container {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 800px;
+}
+
+.select-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#class-select {
+    padding: 10px;
+    font-size: 16px;
+    width: 70%;
+}
+
+#view-schedule-btn {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#schedule-table th, #schedule-table td {
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+}
+
+#schedule-table th {
+    background-color: #f0f0f0;
+}
+
+.dialog-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 500px;
+  max-width: 90%;
+  z-index: 1;
+}
+
+.dialog-content {
+  max-width: 400px;
+  margin: 0 auto;
+}
+</style>
+<script>
+const scheduleData = {
+    "classes": [
+        {
+            "name": "Art Class",
+            "schedule": [
+                { "week": "Week 1 ~ 13th - 19th JAN", "topic": "Use of English" },
+                { "week": "Week 2 ~ ", "topic": "Literature In English " },
+                { "week": "Week 3", "topic": "Government " }
+            ]
+        },
+        {
+            "name": "Commerce Class",
+            "schedule": [
+                { "week": "Week 1", "topic": "Use of English" },
+                { "week": "Week 2", "topic": "Commerce" },
+                { "week": "Week 3", "topic": "Financial Accounting" }
+            ]
+        },
+        {
+            "name": "Science Class",
+            "schedule": [
+                { "week": "Week 1", "topic": "Use of English" },
+                { "week": "Week 2", "topic": "Biology " },
+                { "week": "Week 3", "topic": "Geography " }
+            ]
+        }
+    ]
+};
+
+const classSelect = document.getElementById('class-select');
+const scheduleDisplay = document.getElementById('schedule-tbody');
+
+// Populate the class select options
+scheduleData.classes.forEach((classData) => {
+    const option = document.createElement('option');
+    option.textContent = classData.name;
+    option.value = classData.name;
+    classSelect.appendChild(option);
+});
+
+// Display the schedule for the selected class
+classSelect.addEventListener('change', (e) => {
+    const selectedClass = scheduleData.classes.find((classData) => classData.name === e.target.value);
+    const scheduleHtml = selectedClass.schedule.map((weekData) => `<tr><td>${weekData.week}</td><td>${weekData.topic}</td></tr>`).join('');
+    scheduleDisplay.innerHTML = scheduleHtml;
+});
+
+
+const viewScheduleBtn = document.getElementById('view-schedule-btn');
+const priceDialog = document.getElementById('price');
+
+viewScheduleBtn.addEventListener('click', () => {
+  priceDialog.style.display = 'block';
+});
+
+// Add event listener to close the dialog when clicked outside
+document.addEventListener('click', (e) => {
+  if (!priceDialog.contains(e.target) && e.target !== viewScheduleBtn) {
+    priceDialog.style.display = 'none';
+  }
+});
+
+
+</script>
+
+
+
+
+
+
+
+ 
