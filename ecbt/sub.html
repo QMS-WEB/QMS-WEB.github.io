@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCHOOL NEWS Subscription</title>
+  <style>
+body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f0f0f0;
+    }
+    
+    .container {
+      width: 80%;
+      margin: 40px auto;
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    
+    h2 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-size: 24px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .form-group label {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    
+    .form-group input[type="text"], .form-group input[type="email"], .form-group input[type="tel"] {
+      width: 100%;
+      height: 40px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    
+    .form-group select {
+      width: 100%;
+      height: 40px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    
+    .checkbox-group {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .checkbox-group input[type="checkbox"] {
+      margin-right: 10px;
+      width: 20px;
+      height: 20px;
+    }
+    
+    .checkbox-group label {
+      font-weight: normal;
+      font-size: 16px;
+    }
+    
+    button[type="submit"] {
+      width: 100%;
+      height: 40px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    
+    button[type="submit"]:hover {
+      background-color: #444;
+    }
+    
+    /* Responsive design */
+    
+    @media (max-width: 768px) {
+      .container {
+        width: 90%;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .container {
+        width: 95%;
+      }
+      .form-group input[type="text"], .form-group input[type="email"], .form-group input[type="tel"] {
+        height: 30px;
+      }
+      .form-group select {
+        height: 30px;
+      }
+      button[type="submit"] {
+        height: 30px;
+      }
+    }
+    
+    
+    
+    form {
+    width: 80%;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    /* Style our loading bar */
+    .loading-bar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    }
+    
+    @keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    
+    /* Style our success message */
+    .success-message {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .success-message.show {
+    display: block;
+    }
+   
+  </style>
+</head>
+<body>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCHOOL NEWS Subscription</title>
+  </head>
+  <body>
+  <div class="container">
+  <h2><b>Subscribe to SCHOOL NEWS</b></h2>
+  <p>Stay updated with the latest school news and updates!</p>
+  <form id="subscription-form">
+  <div class="form-group">
+  <label for="fullname">Full Name:</label>
+  <input type="text" id="fullname" name="fullname" required>
+  </div>
+  
+  <div class="form-group">
+  <label for="email">Email Address:</label>
+  <input type="email" id="email" name="email" required>
+  </div>
+  
+  <div class="form-group">
+  <label for="phone">Phone Number:</label>
+  <input type="tel" id="phone" name="phone" required>
+  </div>
+  
+  <div class="form-group">
+  <label for="subscription_plan">Subscription Plan:</label>
+  <select id="subscription_plan" name="subscription_plan">
+  <option value="monthly">₦1,000/Monthly</option>
+  <!-- Add other subscription plans here -->
+  </select>
+  </div>
+  <span> You will recieve the news on this method</span>
+  <div class="form-group">
+  <label for="preferred_channel">Preferred Channel:</label>
+  <div class="checkbox-group">
+  <input type="checkbox" id="sms" name="preferred_channel">
+  <label for="sms">SMS</label>
+  </div>
+  <div class="checkbox-group">
+  <input type="checkbox" id="whatsapp" name="preferred_channel">
+  <label for="whatsapp">WhatsApp</label>
+  </div>
+  <div class="checkbox-group">
+  <input type="checkbox" id="fb" name="preferred_channel">
+  <label for="fb">Facebook</label>
+  </div>
+  <div class="checkbox-group">
+  <input type="checkbox" id="telegram" name="preferred_channel">
+  <label for="telegram">Telegram</label>
+  </div>
+  <div class="checkbox-group">
+  <input type="checkbox" id="instagram" name="preferred_channel">
+  <label for="instagram">Instagram</label>
+  </div>
+  <div class="checkbox-group">
+  <input type="checkbox" id="email" name="preferred_channel">
+  <label for="email">Email</label>
+  </div>
+  <div class="checkbox-group">
+  <input type="text" id="other" name="other" placeholder="Other (please specify)">
+  </div>
+  </div>
+  
+  <button type="submit">Subscribe</button>
+  </form>
+  <div class="loading-bar" style="display: none;"></div>
+  <div class="success-message" style="display: none;">
+  Thank you for submitting your information!
+  </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/telegram-web-app-js@1.0.1/dist/telegram-web-app.min.js"></script>
+  </body>
+  </html>. 
+  
+  <script type="text/javascript">
+  
+ const form = document.getElementById('subscription-form');
+ const loadingBar = document.querySelector('.loading-bar');
+ const successMessage = document.querySelector('.success-message');
+ 
+ form.addEventListener('submit', async (e) => {
+ e.preventDefault();
+ 
+ // Show loading bar
+ loadingBar.style.display = 'block';
+ 
+ // Get form data
+ const formData = new FormData(form);
+ const data = Object.fromEntries(formData.entries());
+ 
+ // Format preferred channel and other info
+ const preferredChannel = [];
+ if (data.sms) preferredChannel.push('SMS');
+ if (data.whatsapp) preferredChannel.push('WhatsApp');
+ if (data.fb) preferredChannel.push('Facebook');
+ if (data.telegram) preferredChannel.push('Telegram');
+ if (data.instagram) preferredChannel.push('Instagram');
+ if (data.email) preferredChannel.push('Email');
+ const otherInfo = data.other ? `Other: ${data.other}` : '';
+ 
+ const botToken = '6404586790:AAFpuevp9GBg7tLVDsw95JcWD93Lw5dj480';
+ const chatId = '6839990154';
+ 
+ // Send data to Telegram bot
+ const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+ method: 'POST',
+ headers: {
+ 'Content-Type': 'application/json',
+ },
+ body: JSON.stringify({
+ chat_id: chatId,
+ text: `
+ E-CBT News Monthly/ subscription:
+ Full Name: ${data.fullname}
+ Email: ${data.email}
+ Phone: ${data.phone}
+ Subscription Plan: ${data.subscription_plan}
+ Preferred Channel: ${preferredChannel.join(', ')}
+ ${otherInfo}
+ `,
+ }),
+ });
+ 
+ // Check if message was sent successfully
+ if (response.ok) {
+ // Hide loading bar
+ loadingBar.style.display = 'none';
+ 
+ // Show success dialog with full name
+ successMessage.innerHTML = `
+ <div class="success-dialog">
+ <div class="success-icon">
+ <i class="fas fa-check-circle"></i>
+ </div>
+ <h2>Thank you, ${data.fullname}!</h2>
+ <p>Your subscription has been successfully sent.</p>
+ <button class="close-button">Close</button>
+ </div>
+ `;
+ successMessage.style.display = 'flex';
+ successMessage.style.justifyContent = 'center';
+ successMessage.style.alignItems = 'center';
+ successMessage.style.flexDirection = 'column';
+ successMessage.style.padding = '20px';
+ successMessage.style.borderRadius = '10px';
+ successMessage.style.boxShadow = '0 0 10px rgba(0,0,0,0.1)';
+ successMessage.style.backgroundColor = '#f0f0f0';
+ 
+ // Add CSS styles for success dialog
+ const successDialog = document.querySelector('.success-dialog');
+ successDialog.style.width = '300px';
+ successDialog.style.height = '200px';
+ successDialog.style.backgroundColor = '#ffffff';
+ successDialog.style.borderRadius = '10px';
+ successDialog.style.boxShadow = '0 0 10px rgba(0,0,0,0.1)';
+ successDialog.style.padding = '20px';
+ successDialog.style.display = 'flex';
+ successDialog.style.flexDirection = 'column';
+ successDialog.style.justifyContent = 'center';
+ successDialog.style.alignItems = 'center';
+ 
+ const successIcon = document.querySelector('.success-icon');
+ successIcon.style.fontSize = '50px';
+ successIcon.style.color = '#34c759';
+ 
+ const closeButton = document.querySelector('.close-button');
+ closeButton.style.width = '100px';
+ closeButton.style.height = '30px';
+ closeButton.style.backgroundColor = '#4CAF50';
+ closeButton.style.color = '#ffffff';
+ closeButton.style.border = 'none';
+ closeButton.style.borderRadius = '5px';
+ closeButton.style.cursor = 'pointer';
+ 
+ // Add event listener to close button
+ closeButton.addEventListener('click', () => {
+ successMessage.style.display = 'none';
+ });
+ } else {
+ // Hide loading bar
+ loadingBar.style.display = 'none';
+ 
+ // Show error message
+ successMessage.innerHTML = 'Error sending subscription. Please try again.';
+ successMessage.style.display = 'block';
+ }
+ 
+ // Reset form
+ form.reset();
+ });
+  </script>
