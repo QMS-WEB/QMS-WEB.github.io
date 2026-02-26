@@ -1,521 +1,776 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title> Authentication Page </title>
-  
+  <title>E-CBT Authentication</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
+  <style>
+    :root {
+      --primary: #168ab8;
+      --primary-dark: #0f6b93;
+      --accent: #00e5ff;
+      --bg: #0a0e1a;
+      --bg2: #111827;
+      --card: #161d2e;
+      --border: rgba(22, 138, 184, 0.25);
+      --text: #e8f4f8;
+      --muted: #6b8a9a;
+      --success: #00c853;
+      --error: #ff4d4d;
+      --font-mono: 'Space Mono', monospace;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Animated background grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(22,138,184,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(22,138,184,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Glowing orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.15;
+    }
+    .orb1 { width: 400px; height: 400px; background: var(--primary); top: -100px; right: -100px; animation: drift 8s ease-in-out infinite alternate; }
+    .orb2 { width: 300px; height: 300px; background: #00e5ff; bottom: -80px; left: -80px; animation: drift 10s ease-in-out infinite alternate-reverse; }
+
+    @keyframes drift { from { transform: translate(0,0); } to { transform: translate(30px, 20px); } }
+
+    /* Main container */
+    .forms-out {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 440px;
+      margin: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 0 0 1px rgba(22,138,184,0.1), 0 24px 60px rgba(0,0,0,0.5), 0 0 40px rgba(22,138,184,0.06);
+      animation: slideUp 0.5s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    @keyframes slideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Header bar */
+    .header-bar {
+      padding: 20px 28px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-logo {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .header-title {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .forms-in { padding: 28px; }
+
+    /* Page headings */
+    .page-title {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .page-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    /* Form labels */
+    .field-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+      margin-top: 14px;
+    }
+    .field-label:first-child { margin-top: 0; }
+
+    /* Inputs */
+    input[type="email"],
+    input[type="password"],
+    input[type="text"],
+    textarea,
+    select {
+      display: block;
+      width: 100%;
+      padding: 10px 14px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(22,138,184,0.15);
+    }
+    select { cursor: pointer; }
+    select option { background: var(--bg2); }
+    textarea { resize: vertical; min-height: 70px; }
+
+    /* Primary button */
+    .btn-primary {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+      margin-top: 20px;
+    }
+    .btn-primary:hover { opacity: 0.88; box-shadow: 0 4px 20px rgba(22,138,184,0.4); }
+    .btn-primary:active { transform: scale(0.98); }
+
+    /* Ghost button */
+    .btn-ghost {
+      width: 100%;
+      padding: 10px;
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      margin-top: 10px;
+    }
+    .btn-ghost:hover { color: var(--text); border-color: var(--primary); }
+
+    /* Forgot password link */
+    #forgot-password {
+      font-size: 12px;
+      color: var(--primary);
+      cursor: pointer;
+      text-align: right;
+      margin-top: 6px;
+      transition: opacity 0.2s;
+    }
+    #forgot-password:hover { opacity: 0.7; }
+
+    /* Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 16px 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Hide utility */
+    .hide { display: none !important; }
+
+    /* ── Profile Upload Section ── */
+    .upload-section {
+      margin-top: 14px;
+    }
+    .upload-zone {
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .upload-zone:hover { border-color: var(--primary); background: rgba(22,138,184,0.04); }
+    .upload-zone.dragging { border-color: var(--accent); background: rgba(0,229,255,0.04); }
+
+    .upload-zone input[type="file"] {
+      position: absolute; inset: 0;
+      opacity: 0; cursor: pointer;
+      width: 100%; height: 100%;
+    }
+    .upload-icon { font-size: 28px; color: var(--muted); margin-bottom: 8px; }
+    .upload-text { font-size: 13px; color: var(--muted); }
+    .upload-text span { color: var(--primary); font-weight: 600; }
+
+    /* Preview */
+    #profile-preview-wrap {
+      display: none;
+      align-items: center;
+      gap: 14px;
+      margin-top: 12px;
+      padding: 12px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    #profile-preview-wrap.visible { display: flex; }
+    #profile-preview {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary);
+    }
+    .preview-info { flex: 1; }
+    .preview-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .preview-size { font-size: 11px; color: var(--muted); }
+    .preview-status {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(22,138,184,0.15);
+      color: var(--primary);
+    }
+    .preview-status.sending { animation: pulse-status 1s infinite; }
+    .preview-status.sent { background: rgba(0,200,83,0.15); color: var(--success); }
+    .preview-status.error { background: rgba(255,77,77,0.15); color: var(--error); }
+
+    @keyframes pulse-status { 0%,100%{ opacity:1; } 50%{ opacity:0.5; } }
+
+    .telegram-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: #29b6f6;
+      margin-top: 6px;
+    }
+    .telegram-badge .fa { font-size: 13px; }
+
+    /* ── Homepage / Profile ── */
+    #homepage .profile-card {
+      text-align: center;
+      padding: 20px 0;
+    }
+    .profile-avatar {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 20px rgba(22,138,184,0.4);
+      margin-bottom: 14px;
+    }
+    .profile-name {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .profile-email {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-key { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .info-val { color: var(--text); font-weight: 500; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    .status-dot {
+      display: inline-block;
+      width: 8px; height: 8px;
+      background: var(--success);
+      border-radius: 50%;
+      margin-right: 6px;
+      box-shadow: 0 0 6px var(--success);
+      animation: blink 2s infinite;
+    }
+    @keyframes blink { 0%,100%{ opacity:1; } 50%{ opacity:0.4; } }
+
+    /* Dashboard area */
+    #dashboard {
+      display: none;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 440px;
+      margin: 0 20px 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 28px;
+      animation: slideUp 0.5s 0.1s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    #dashboard .dash-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    /* Scroll wrapper for page */
+    .page-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
+      width: 100%;
+    }
+
+    /* Loading spinner */
+    .spinner {
+      display: inline-block;
+      width: 14px; height: 14px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Authentication</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Fira+Sans&display=swap"
-      rel="stylesheet"
-    />
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1"
-    />
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
 
-    <link
-      rel="shortcut icon"
-      type="image/png"
-      href="https://naishare.com/images/favicon.png"
-    />
-   
- <link rel="stylesheet" href="style.cs">
-<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
+<div class="page-wrap">
 
- <style>
-    
-  /* Font and color variables */
-  :root {
-    --primary-color: #168ab8;
-    --secondary-color: #e8f8ff;
-    --font-family: "Fira Sans", sans-serif;
-  }
-
-  /* Global styles */
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    font-family: var(--font-family);
-    background-color: #f9f9f9;
-  }
-
-  /* Forms container */
-  .forms-out {
-    max-width: 400px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Forms inner container */
-  .forms-in {
-    padding: 20px;
-  }
-
-  /* Form fields */
-  .forms-in input {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Buttons */
-  .forms-in button {
-    background-color: var(--primary-color);
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .forms-in button:hover {
-    opacity: 0.7;
-  }
-
-  /* Other styles */
-  #forgot-password {
-    font-size: 14px;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  #forgot-password:hover {
-    opacity: 0.7;
-  }
-
-  .hide {
-    display: none;
-  }
-
-#dashboard {
-  display: none;
-}
-
-
-
-
-
-</style>
- </head>
-
-  <body>
-   
-
- 
-<div class="forms-out">
-  <div class="forms-in">
-    <div id="registration-page" class="hide">
-      <button id="show-login">Sign In</button>
-      <h3>Sign Up</h3>
-      Email <br />
-      <input type="email" id="registration-email" />
-      <br />
-      Confirm Email <br />
-      <input type="email" id="registration-reemail" autocomplete="disable" />
-      <br />
-      Password <br />
-      <input type="password" id="registration-password" />
-      <br />
-      Username <br />
-      <input type="text" id="registration-username" />
-      <br />
-      Subject <br />
-      <select id="registration-subject">
-        <option value="subject1">Subject 1</option>
-        <option value="subject2">Subject 2</option>
-        <option value="subject3">Subject 3</option>
-        <option value="subject4">Subject 4</option>
-      </select>
-      <br />
-      Profile <br />
-      <input type="file" id="registration-profile" />
-      <br />
-      Bio <br />
-      <textarea id="registration-bio"></textarea>
-      <br />
-      User ID <br />
-      <input type="text" id="registration-userid" />
-      <br />
-      <center><button id="register">Sign Up</button></center>
+  <!-- Auth Card -->
+  <div class="forms-out">
+    <div class="header-bar">
+      <div class="header-logo">EC</div>
+      <div class="header-title">E-CBT Platform</div>
     </div>
-    <div id="login-page">
-<center> <h3>Login to E-CBT</h3></center>
-     
-      <h3>Sign In</h3>
-      Email <br />
-      <input type="email" id="login-email" />
-      <br />
-      Password <br />
-      <input type="password" id="login-password" />
-      <br />
-      <p id="forgot-password">Forgot Password</p>
-      <center><button class="wow bounceIn" id="login">Sign In</button>
-<br>
-<button id="show-register">Sign Up</button>
-          </center>
 
-    </div>
-    <div id="homepage" class="hide">
-  
-      <h3>Logged In</h3>
-<br>
-<hr>
-       <h3>User Information</h3>
-<!-- Create a new div for the profile -->
-<div id="profile-div" style="text-align: center;">
-  <!-- Round profile picture -->
-  <img src="${userprofile}" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; margin: 10px;">
-  <!-- Display user details -->
-  <h4>Username: ${username}</h4>
-  <p> Bio: ${userbio}</p>
-  <p>UserID: ${userid}</p>
-  <p>E-mail Adress: ${useremail}</p>
-</div>
-   <center> <button id="signout">Sign Out</button>  </center>
-     
+    <div class="forms-in">
 
-    </div>
-  </div>
-</div>
+      <!-- ═══════════ REGISTRATION ═══════════ -->
+      <div id="registration-page" class="hide">
+        <div class="page-title">Create Account</div>
+        <div class="page-sub">Join E-CBT to get started</div>
 
+        <label class="field-label">Email</label>
+        <input type="email" id="registration-email" placeholder="you@example.com"/>
 
+        <label class="field-label">Confirm Email</label>
+        <input type="email" id="registration-reemail" autocomplete="off" placeholder="Confirm your email"/>
 
+        <label class="field-label">Password</label>
+        <input type="password" id="registration-password" placeholder="Min. 7 characters"/>
 
+        <label class="field-label">Username</label>
+        <input type="text" id="registration-username" placeholder="Your display name"/>
 
+        <label class="field-label">Subject</label>
+        <select id="registration-subject">
+          <option value="">— Select a subject —</option>
+          <option value="subject1">Subject 1</option>
+          <option value="subject2">Subject 2</option>
+          <option value="subject3">Subject 3</option>
+          <option value="subject4">Subject 4</option>
+        </select>
 
+        <label class="field-label">Bio</label>
+        <textarea id="registration-bio" placeholder="Tell us a little about yourself…"></textarea>
 
+        <label class="field-label">User ID</label>
+        <input type="text" id="registration-userid" placeholder="e.g. STU-00123"/>
 
+        <!-- Profile Photo Upload -->
+        <label class="field-label">Profile Photo</label>
+        <div class="upload-section">
+          <div class="upload-zone" id="upload-zone">
+            <input type="file" id="registration-profile" accept="image/*"/>
+            <div class="upload-icon"><i class="fa fa-cloud-upload"></i></div>
+            <div class="upload-text">Drop image here or <span>browse</span></div>
+          </div>
 
+          <div id="profile-preview-wrap">
+            <img id="profile-preview" src="" alt="Preview"/>
+            <div class="preview-info">
+              <div class="preview-name" id="preview-filename">—</div>
+              <div class="preview-size" id="preview-size">—</div>
+              <div class="telegram-badge">
+                <i class="fa fa-telegram"></i> via Telegram bot
+              </div>
+            </div>
+            <div class="preview-status" id="upload-status">Ready</div>
+          </div>
+        </div>
 
+        <!-- Hidden URL storage -->
+        <input type="hidden" id="profile-url" value=""/>
 
-  <div id="dashboard" class ="forms-out">
- <div id="root">
-    <dashboard-view>
-      <router-view></router-view>
-    </dashboard-view>
+        <button class="btn-primary" id="register">
+          <i class="fa fa-user-plus"></i> &nbsp;Create Account
+        </button>
+        <button class="btn-ghost" id="show-login">
+          Already have an account? Sign In
+        </button>
+      </div>
+
+      <!-- ═══════════ LOGIN ═══════════ -->
+      <div id="login-page">
+        <div class="page-title">Welcome Back</div>
+        <div class="page-sub">Sign in to your E-CBT account</div>
+
+        <label class="field-label">Email</label>
+        <input type="email" id="login-email" placeholder="you@example.com"/>
+
+        <label class="field-label">Password</label>
+        <input type="password" id="login-password" placeholder="Your password"/>
+
+        <p id="forgot-password">Forgot password?</p>
+
+        <button class="btn-primary" id="login">
+          <i class="fa fa-sign-in"></i> &nbsp;Sign In
+        </button>
+        <button class="btn-ghost" id="show-register">
+          Don't have an account? Sign Up
+        </button>
+      </div>
+
+      <!-- ═══════════ HOMEPAGE ═══════════ -->
+      <div id="homepage" class="hide">
+        <div class="page-title">
+          <span class="status-dot"></span>Logged In
+        </div>
+        <div class="page-sub">Welcome back to E-CBT</div>
+
+        <div class="profile-card" id="profile-div">
+          <img src="https://via.placeholder.com/88" class="profile-avatar" id="hp-avatar" alt="Avatar"/>
+          <div class="profile-name" id="hp-username">—</div>
+          <div class="profile-email" id="hp-email">—</div>
+
+          <div class="info-row">
+            <span class="info-key">User ID</span>
+            <span class="info-val" id="hp-uid">—</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Bio</span>
+            <span class="info-val" id="hp-bio">—</span>
+          </div>
+        </div>
+
+        <button class="btn-primary" id="signout" style="margin-top:16px;">
+          <i class="fa fa-sign-out"></i> &nbsp;Sign Out
+        </button>
+      </div>
+
+    </div><!-- /forms-in -->
+  </div><!-- /forms-out -->
+
+  <!-- Dashboard area (shown when logged in) -->
+  <div id="dashboard">
+    <div class="dash-title">Dashboard</div>
+    <div id="root" style="color:var(--muted); font-size:13px;">Dashboard content loads here.</div>
   </div>
 
-</div>
+</div><!-- /page-wrap -->
 
 
-
-
-
-
-
-
-
-
-<script  src="./script.js">
-
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.21/vue.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.11/vue-router.js'></script>
-<script src='https://cdn.firebase.com/js/client/2.4.2/firebase.js'></script>
-<script src='https://cdn.jsdelivr.net/vuefire/1.3.0/vuefire.min.js'></script>
-
-
-
-<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-
-<!-- REACT LIBRARY -->
-    <script src="https://unpkg.com/react@15.5.4/dist/react.js"></script>
-    <!-- REACT DOM LIBRARY -->
-    <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
-    <!-- BABEL LIBRARY -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
-
-
-
-
-
-
-
-
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-
-
-<script>
-    new WOW().init();
-  </script>
-
-
-  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
-
- 
-
-
-
-
-
-   <!-- TODO: Add SDKs for Firebase products that you want to use-->
-    
-
-
-
-
-
-
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
 
-  
+<script>
+  // ──────────────────────────────────────────────
+  // TELEGRAM BOT CONFIG
+  // Replace with your actual bot token and chat ID
+  // ──────────────────────────────────────────────
+  const TELEGRAM_BOT_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN';
+  const TELEGRAM_CHAT_ID   = 'YOUR_TELEGRAM_CHAT_ID';
 
-
-
-
-  <script>
- 
-     // Your web app's Firebase configuration
-      var firebaseConfig = {
-        apiKey: "AIzaSyBhObBI-YrybEUGSA7DqbXkgT64H5nQ_yA",
-        authDomain: "e-cbt-e2216.firebaseapp.com",
-        databaseURL: "https://registration-cf470.firebaseio.com",
-        projectId: "e-cbt-e2216",
-        storageBucket: "e-cbt-e2216.appspot.com",
-        messagingSenderId: "469325804107",
-        appId: "1:469325804107:web:a73e0faa4c9ef99c9753ce",
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-    </script>
-
-    <script>
-      //invokes firebase authentication.
-      const auth = firebase.auth();
-
-  document.querySelector("#show-register").addEventListener("click", () => {
-    showRegistration();
-  });
-
-  const showRegistration = () => {
-    document.querySelector("#registration-page").classList.remove("hide");
-    document.querySelector("#login-page").classList.add("hide");
-    document.querySelector("#homepage").classList.add("hide");
+  // ──────────────────────────────────────────────
+  // Firebase Config
+  // ──────────────────────────────────────────────
+  const firebaseConfig = {
+    apiKey: "AIzaSyBhObBI-YrybEUGSA7DqbXkgT64H5nQ_yA",
+    authDomain: "e-cbt-e2216.firebaseapp.com",
+    databaseURL: "https://registration-cf470.firebaseio.com",
+    projectId: "e-cbt-e2216",
+    storageBucket: "e-cbt-e2216.appspot.com",
+    messagingSenderId: "469325804107",
+    appId: "1:469325804107:web:a73e0faa4c9ef99c9753ce",
   };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
 
-  document.querySelector("#show-login").addEventListener("click", () => {
-    showLogin();
+  // ──────────────────────────────────────────────
+  // TELEGRAM IMAGE UPLOAD
+  // Sends image file to Telegram bot and returns file_id
+  // ──────────────────────────────────────────────
+  async function uploadImageToTelegram(file) {
+    const statusEl  = document.getElementById('upload-status');
+    statusEl.textContent = 'Uploading…';
+    statusEl.className = 'preview-status sending';
+
+    const formData = new FormData();
+    formData.append('chat_id', TELEGRAM_CHAT_ID);
+    formData.append('photo', file);
+    formData.append('caption', '📸 Profile photo upload — E-CBT');
+
+    try {
+      const res  = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.json();
+
+      if (!data.ok) throw new Error(data.description || 'Telegram API error');
+
+      // Get the largest photo size
+      const photos    = data.result.photo;
+      const fileId    = photos[photos.length - 1].file_id;
+
+      // Resolve file path for a direct URL
+      const fileRes   = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getFile?file_id=${fileId}`);
+      const fileData  = await fileRes.json();
+      const filePath  = fileData.result.file_path;
+      const publicURL = `https://api.telegram.org/file/bot${TELEGRAM_BOT_TOKEN}/${filePath}`;
+
+      // Store URL in hidden input
+      document.getElementById('profile-url').value = publicURL;
+
+      statusEl.textContent = '✓ Uploaded';
+      statusEl.className   = 'preview-status sent';
+
+      return publicURL;
+
+    } catch (err) {
+      console.error('Telegram upload error:', err);
+      statusEl.textContent = 'Error';
+      statusEl.className   = 'preview-status error';
+      alert('Image upload failed: ' + err.message);
+      return null;
+    }
+  }
+
+  // ──────────────────────────────────────────────
+  // FILE INPUT HANDLER
+  // ──────────────────────────────────────────────
+  const fileInput   = document.getElementById('registration-profile');
+  const previewWrap = document.getElementById('profile-preview-wrap');
+  const previewImg  = document.getElementById('profile-preview');
+  const uploadZone  = document.getElementById('upload-zone');
+
+  fileInput.addEventListener('change', async function () {
+    const file = this.files[0];
+    if (!file) return;
+
+    // Show local preview immediately
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      previewImg.src = e.target.result;
+      previewWrap.classList.add('visible');
+      document.getElementById('preview-filename').textContent = file.name;
+      document.getElementById('preview-size').textContent     = (file.size / 1024).toFixed(1) + ' KB';
+      document.getElementById('upload-status').textContent    = 'Ready';
+      document.getElementById('upload-status').className      = 'preview-status';
+    };
+    reader.readAsDataURL(file);
+
+    // Auto-upload to Telegram
+    await uploadImageToTelegram(file);
   });
+
+  // Drag-and-drop highlight
+  uploadZone.addEventListener('dragover',  () => uploadZone.classList.add('dragging'));
+  uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragging'));
+  uploadZone.addEventListener('drop',      () => uploadZone.classList.remove('dragging'));
+
+  // ──────────────────────────────────────────────
+  // NAV HELPERS
+  // ──────────────────────────────────────────────
+  const showRegistration = () => {
+    document.getElementById('registration-page').classList.remove('hide');
+    document.getElementById('login-page').classList.add('hide');
+    document.getElementById('homepage').classList.add('hide');
+  };
 
   const showLogin = () => {
-    document.querySelector("#registration-page").classList.add("hide");
-    document.querySelector("#login-page").classList.remove("hide");
-    document.querySelector("#homepage").classList.add("hide");
-  };
-
-  document.querySelector("#signout").addEventListener("click", () => {
-    signOut();
-  });
-
-  const register = () => {
-    const email = document.querySelector("#registration-email").value;
-    const reemail = document.querySelector("#registration-reemail").value;
-    const password = document.querySelector("#registration-password").value;
-    const username = document.querySelector("#registration-username").value;
-    const subject = document.querySelector("#registration-subject").value;
-    const profile = document.querySelector("#registration-profile").value;
-    const bio = document.querySelector("#registration-bio").value;
-    const userid = document.querySelector("#registration-userid").value;
-
-    if (email.trim() == "") {
-      alert("Enter Email");
-    } else if (password.trim().length < 7) {
-      alert("Password must be at least 7 characters");
-    } else if (email != reemail) {
-      alert("emails do not match");
-    } else {
-      auth
-        .createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          user.updateProfile({
-            displayName: username,
-            photoURL: profile,
-            bio: bio,
-            userid: userid,
-          });
-        })
-        .catch((error) => {
-          // Handle Errors here
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          alert(errorMessage);
-        });
-    }
-  };
-
-  document.querySelector("#register").addEventListener("click", () => {
-    register();
-  });
-
-  // Register when you hit the enter key
-  document
-    .querySelector("#registration-password")
-    .addEventListener("keyup", (e) => {
-      if (event.keyCode === 13) {
-        e.preventDefault();
-        register();
-      }
-    });
-
-  const login = () => {
-    const email = document.querySelector("#login-email").value;
-    const password = document.querySelector("#login-password").value;
-
-    if (email.trim() == "") {
-      alert("Enter Email");
-    } else if (password.trim() == "") {
-      alert("Enter Password");
-    } else {
-      authenticate(email, password);
-    }
-  };
-
-  document.querySelector("#login").addEventListener("click", () => {
-    login();
-  });
-
-  // Sign in when you hit enter
-  document
-    .querySelector("#login-password")
-    .addEventListener("keyup", (e) => {
-      if (event.keyCode === 13) {
-        e.preventDefault();
-        login();
-      }
-    });
-
-  const authenticate = (email, password) => {
-    const auth = firebase.auth();
-    auth.signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        showHomepage();
-      })
-      .catch((error) => {
-        // Handle Errors here
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        alert(errorMessage);
-      });
+    document.getElementById('registration-page').classList.add('hide');
+    document.getElementById('login-page').classList.remove('hide');
+    document.getElementById('homepage').classList.add('hide');
   };
 
   const showHomepage = () => {
-    document.querySelector("#registration-page").classList.add("hide");
-    document.querySelector("#login-page").classList.add("hide");
-    document.querySelector("#homepage").classList.remove("hide");
+    document.getElementById('registration-page').classList.add('hide');
+    document.getElementById('login-page').classList.add('hide');
+    document.getElementById('homepage').classList.remove('hide');
   };
 
-  const signOut = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(function () {
-        location.reload();
-      })
-      .catch(function (error) {
-        alert("error signing out, check network connection");
-      });
+  document.getElementById('show-register').addEventListener('click', showRegistration);
+  document.getElementById('show-login').addEventListener('click', showLogin);
+  document.getElementById('signout').addEventListener('click', signOut);
+
+  // ──────────────────────────────────────────────
+  // REGISTER
+  // ──────────────────────────────────────────────
+  const register = async () => {
+    const email    = document.getElementById('registration-email').value.trim();
+    const reemail  = document.getElementById('registration-reemail').value.trim();
+    const password = document.getElementById('registration-password').value;
+    const username = document.getElementById('registration-username').value.trim();
+    const bio      = document.getElementById('registration-bio').value.trim();
+    const userid   = document.getElementById('registration-userid').value.trim();
+    const photoURL = document.getElementById('profile-url').value || '';
+
+    if (!email)              return alert('Enter Email');
+    if (password.length < 7) return alert('Password must be at least 7 characters');
+    if (email !== reemail)   return alert('Emails do not match');
+
+    const btn = document.getElementById('register');
+    btn.innerHTML = '<span class="spinner"></span> Creating…';
+    btn.disabled  = true;
+
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(email, password);
+      await user.updateProfile({ displayName: username, photoURL: photoURL || null });
+      showHomepage();
+    } catch (err) {
+      alert(err.message);
+    } finally {
+      btn.innerHTML = '<i class="fa fa-user-plus"></i> &nbsp;Create Account';
+      btn.disabled  = false;
+    }
   };
 
+  document.getElementById('register').addEventListener('click', register);
+  document.getElementById('registration-password').addEventListener('keyup', (e) => {
+    if (e.keyCode === 13) register();
+  });
 
-auth.onAuthStateChanged((firebaseUser) => {
-  if (firebaseUser) {
-    showHomepage();
- document.getElementById('dashboard').style.display = 'block';
-    const userid = firebaseUser.uid;
-    const username = firebaseUser.displayName;
-    const useremail = firebaseUser.email;
-    const userprofile = firebaseUser.photoURL;
-    const userbio = firebaseUser.bio;
+  // ──────────────────────────────────────────────
+  // LOGIN
+  // ──────────────────────────────────────────────
+  const login = async () => {
+    const email    = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value;
 
-    // Create a div element to display the user's information
-  
-document.getElementById('profile-div').innerHTML = `
-    <!-- Round profile picture -->
-    <img src="${userprofile}" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; margin: 10px;">
-    <!-- Display user details -->
-    <h4>USERNAME: ${username}</h4><br>
-    <h5>User I.D : ${userid}</h5><br>
-    <h5>Bio:  ${userbio}</p> <br>
-    <h5>E-mail: ${useremail}</h5>
-  `;
-  } else {
-    console.log("No user logged in");
-  document.getElementById('dashboard').style.display = 'none';
+    if (!email)    return alert('Enter Email');
+    if (!password) return alert('Enter Password');
+
+    const btn = document.getElementById('login');
+    btn.innerHTML = '<span class="spinner"></span> Signing in…';
+    btn.disabled  = true;
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      showHomepage();
+    } catch (err) {
+      alert(err.message);
+    } finally {
+      btn.innerHTML = '<i class="fa fa-sign-in"></i> &nbsp;Sign In';
+      btn.disabled  = false;
+    }
+  };
+
+  document.getElementById('login').addEventListener('click', login);
+  document.getElementById('login-password').addEventListener('keyup', (e) => {
+    if (e.keyCode === 13) login();
+  });
+
+  // ──────────────────────────────────────────────
+  // SIGN OUT
+  // ──────────────────────────────────────────────
+  function signOut() {
+    auth.signOut().then(() => location.reload()).catch(() => alert('Error signing out'));
   }
-});
 
+  // ──────────────────────────────────────────────
+  // AUTH STATE OBSERVER
+  // ──────────────────────────────────────────────
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      showHomepage();
+      document.getElementById('dashboard').style.display = 'block';
 
+      document.getElementById('hp-avatar').src    = user.photoURL || 'https://via.placeholder.com/88';
+      document.getElementById('hp-username').textContent = user.displayName || '(No name)';
+      document.getElementById('hp-email').textContent    = user.email;
+      document.getElementById('hp-uid').textContent      = user.uid;
+      document.getElementById('hp-bio').textContent      = '—';
+    } else {
+      document.getElementById('dashboard').style.display = 'none';
+    }
+  });
 
-document.querySelector("#forgot-password").addEventListener("click", () => {
-  const email = document.querySelector("#login-email").value;
-  if (email.trim() == "") {
-    alert("Enter Email");
-  } else {
-    forgotPassword(email);
-  }
-});
-
-const forgotPassword = (email) => {
-  auth.sendPasswordResetEmail(email)
-    .then(function() {
-      alert("Email sent");
-    })
-    .catch(function(error) {
-      alert("Invalid email or bad network connection");
-    });
-};
-
-
+  // ──────────────────────────────────────────────
+  // FORGOT PASSWORD
+  // ──────────────────────────────────────────────
+  document.getElementById('forgot-password').addEventListener('click', () => {
+    const email = document.getElementById('login-email').value.trim();
+    if (!email) return alert('Enter your email first');
+    auth.sendPasswordResetEmail(email)
+      .then(() => alert('Password reset email sent!'))
+      .catch(() => alert('Invalid email or network error'));
+  });
 </script>
 
-<script>
-  const Dashboard = () => {
-      return <h1>Dashboard</h1>;
-    };
-
-    const routes = [
-      { path: '', element: <Dashboard /> }
-    ];
-
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(
-      <React.Router>
-        <React.Route routes={routes} />
-      </React.Router>
-    );
-
- </script>
- 
-
-
- </body>
-</html>
-<!-- partial -->
-  
 </body>
 </html>
